@@ -1,0 +1,69 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Helper\MyHelper;
+use App\Location;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
+class LocationsController extends Controller
+{
+    public function getLocations()
+    {
+      $locations = Location::getLocations();
+      return datatables($locations)->toJson();
+    //   dd($Locations);
+    }
+
+    public function insertLocations(Request $request)
+    {
+        $data = array(
+            $request->new_location,
+            $request->new_capacity,
+            MyHelper::decrypt(Session::get('Employee_ID'))
+        );
+
+        $insert = Location::insertLocation($data);
+
+        $num = $insert[0]->RETURN;
+
+        if ($num > 0) :
+            $msg = 'Location successfully saved!';
+        else :
+            $msg = Myhelper::errorMessages($num);
+        endif;
+
+        $result = array('num' => $num, 'msg' => $msg);
+        return $result;
+    }
+
+    /*
+    public function showEditLocation($id)
+    {
+        $data['title']='Edit Location';
+        $location = Location::getLocationsEdit($id);
+        return view ('pages.locations.tabs.edit_location',$data)
+        ->with('location',$location);
+
+    }
+    */
+
+    public function updateLocation(Request $request)
+    {
+        $data=array(
+            $request->edit_location_ID,
+            $request->edit_location,
+            $request->edit_capacity,
+            MyHelper::decrypt(Session::get('Employee_ID'))
+        );
+
+        // dd($data);
+         Location::updateLocation($data);
+         $num = 1;
+         $msg = 'Location successfuly updated!';
+
+            $result = array('num' => $num, 'msg' => $msg);
+            return $result;
+    }
+}
