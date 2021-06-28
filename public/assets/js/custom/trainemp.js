@@ -85,7 +85,7 @@ $(document).ready(function ()
                                     confirmButtonText: 'Ok'
                                     }).then(function (result) {
                                         if (true) {
-                                            tbl_train_emp2.draw() ;
+                                            tbl_train_emp2.ajax.reload() ;
                                         }
                                     })
 
@@ -224,7 +224,7 @@ $(document).ready(function ()
                                     confirmButtonText: 'Ok'
                                     }).then(function (result) {
                                         if (true) {
-                                            tbl_train_emp2.draw() ;
+                                            tbl_train_emp2.ajax.reload() ;
                                         }
                                     })
 
