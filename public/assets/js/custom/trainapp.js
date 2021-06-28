@@ -13,7 +13,7 @@ $(document).ready(function ()
         var program=$('#program_name').text();
         var training=$('#training_name').text();
         var tbl_train_app= $('#tbl_train_app').DataTable({
-        serverSide: true,
+        serverSide: false,
         processing: true,
         scrollX: true,
         pageLength : 5,
@@ -21,7 +21,15 @@ $(document).ready(function ()
         buttons: [
             'copy',
             {extend: 'excelHtml5',
-            title: program+" - "+training}
+            title: program+" - "+training,
+            modifier: {
+            page: 'all',
+            search: 'none'
+          }
+
+
+        },
+
         ],
         lengthMenu: [[5, 10, 20], [5, 10, 20]],
         ajax: {
@@ -89,7 +97,7 @@ $(document).ready(function ()
     var program_title = $('#program-title').text()
     var program=$('#program_id').val();
     var tbl_app_prog= $('#tbl_app_prog').DataTable({
-    serverSide: true,
+    serverSide: false,
     autoWidth: true,
     lengthChange: false,
     processing: true,
@@ -102,7 +110,16 @@ $(document).ready(function ()
     buttons: [
         'copy',
         {extend: 'excelHtml5',
-        title: program_title}
+        title: program_title,
+        exportOptions: {
+            columns: [ 0,1,2,3,4,5,6,7,8,9,10,11,12]
+        },
+        modifier: {
+            page: 'all',
+            search: 'none'
+          }
+
+        }
     ],
     ajax: {
         url: WebURL + '/program-app-tbl',
@@ -191,6 +208,7 @@ $(document).ready(function ()
     },
 
 });
+
 
     //
     //Recom Modal
