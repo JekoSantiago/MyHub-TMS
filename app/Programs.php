@@ -24,13 +24,13 @@ class Programs extends Model
     public static function insertProgram($data)
     {
 
-       return DB::select('exec sp_Program_Insert ?,?,?', $data);
+       return DB::select('exec sp_Program_Insert ?,?,?,?', $data);
 
     }
 
     public static function updateProgram($data)
     {
-        return DB::select('sp_program_update ?,?,?,?', $data);
+        return DB::select('sp_program_update ?,?,?,?,?', $data);
     }
 
     public static function programAppCount($data)

@@ -40,4 +40,11 @@ class Common extends Model
         return DB::select('sp_DC_Store_get ?,?,?',$data);
 
     }
+
+    public static function getSeqProg($data)
+    {
+
+        return DB::select('sp_Program_Get ?,?,?',$data);
+
+    }
 }

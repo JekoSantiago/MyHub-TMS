@@ -81,4 +81,37 @@ class OptionsController extends Controller
 
         echo $output;
     }
+
+    public function getSeqPrograms(Request $request)
+    {
+        $progID = $request->progID;
+
+        $seqID = ($progID == env('AMT')) ? env('ACT') : (($progID == env('ACT')) ? env('SLT') : (($progID == env('SLT')) ? env('SCT') : -1));
+        // dd($progID,$seqID);
+        if ($seqID > 0)
+        {
+            $param = [
+                0,
+                '',
+                $seqID
+            ];
+
+
+
+            $output = '<option></option>';
+
+            $data = Common::getSeqProg($param);
+
+            foreach($data as $program) :
+                $output .= '<option value="'. $program->Program_ID .'">'. $program->Program  .'</option>';
+            endforeach;
+
+            echo $output;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
 }

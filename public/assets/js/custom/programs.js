@@ -1,3 +1,4 @@
+
 $(document).ready(function ()
 {
     var tbl_programs = $('#tbl_programs').DataTable({
@@ -143,6 +144,10 @@ $(document).ready(function ()
         var parentID = data['Parent_Program_ID'];
         var program = data['Program'];
         var programID = data['Program_ID'];
+        var seqID = data['Sequence_Program_ID'];
+        var progID = parentID;
+
+        (seqID>0) ? $('#seqlist').show() : $('#seqlist').hide()
 
         $.ajax({
             url:WebURL+'/get-programs',
@@ -152,6 +157,26 @@ $(document).ready(function ()
             success: function (data) {
                 $('#edit_parent_program').html(data);
                 $('#edit_parent_program').val(parentID);
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+
+        $.ajax({
+            url:WebURL+'/get-sequence',
+            type:'post',
+            dataType: 'text',
+            data:{progID},
+            cache: false,
+            success: function (data) {
+                console.log(data);
+                if(data.length > 0)
+                {
+                    $('#seqlist').show();
+                    $('#edit_seq_program').html(data);
+                    $('#edit_seq_program').val(seqID);
+                }
             },
             error: function (e) {
                 console.log(e);
@@ -237,10 +262,7 @@ $(document).ready(function ()
                     },'JSON');
                 }
 
-
                 });
-
-
         }
         else {
             $('.error-input').filter(":first").focus();
@@ -257,6 +279,100 @@ $(document).ready(function ()
     {
         $('#prog_ast').hide();
     }
+
+
+    $('body').on('change','#new_parent_program',function(){
+        console.log($('#new_parent_program').val());
+        progID = $('#new_parent_program').val();
+
+        $.ajax({
+            url:WebURL+'/get-sequence',
+            type:'post',
+            dataType: 'text',
+            data:{progID},
+            cache: false,
+            success: function (data) {
+                // console.log(data);
+                if(data.length > 0)
+                {
+                    $('#seqlist').show();
+                    $('#new_seq_program').html(data);
+                }
+                else
+                {
+                    $('#seqlist').hide();
+
+                }
+
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    })
+
+    $('body').on('change','#edit_parent_program',function(){
+        console.log($('#edit_parent_program').val());
+        progID = $('#edit_parent_program').val();
+
+
+        $.ajax({
+            url:WebURL+'/get-sequence',
+            type:'post',
+            dataType: 'text',
+            data:{progID},
+            cache: false,
+            success: function (data) {
+                // console.log(data);
+                if(data.length > 0)
+                {
+                    $('#seqlist').show();
+                    $('#edit_seq_program').html(data);
+                    $('#edit_seq_program').val()
+                }
+                else
+                {
+                    $('#seqlist').hide();
+
+                }
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    })
+
+    $('body').on('change','#edit_parent_program',function(){
+        console.log($('#edit_parent_program').val());
+        progID = $('#edit_parent_program').val();
+
+        $.ajax({
+            url:WebURL+'/get-sequence',
+            type:'post',
+            dataType: 'text',
+            data:{progID},
+            cache: false,
+            success: function (data) {
+                // console.log(data);
+                if(data.length > 0)
+                {
+                    $('#seqlist').show();
+                    $('#edit_seq_program').html(data);
+                }
+                else
+                {
+                    $('#seqlist').hide();
+
+                }
+
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    })
+
+
 
 ///////////
 });
