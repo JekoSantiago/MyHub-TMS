@@ -86,7 +86,7 @@ class OptionsController extends Controller
     {
         $progID = $request->progID;
 
-        $seqID = ($progID == env('AMT')) ? env('ACT') : (($progID == env('ACT')) ? env('SLT') : (($progID == env('SLT')) ? env('SCT') : -1));
+        $seqID = ($progID == env('SCT')) ? env('SLT') : (($progID == env('SLT')) ? env('ACT') : (($progID == env('ACT')) ? env('AMT') : -1));
         // dd($progID,$seqID);
         if ($seqID > 0)
         {
