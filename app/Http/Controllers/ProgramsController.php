@@ -35,8 +35,10 @@ class ProgramsController extends Controller
         $data = array(
             $request->new_program,
             $request->new_parent_program,
+            $request->new_seq_program,
             MyHelper::decrypt(Session::get('Employee_ID'))
         );
+
 
         $insert = Programs::insertProgram($data);
 
@@ -72,6 +74,7 @@ class ProgramsController extends Controller
             $request->edit_program_id,
             $request->edit_program,
             $request->edit_parent_program,
+            $request->edit_seq_program,
             MyHelper::decrypt(Session::get('Employee_ID'))
         );
 
@@ -84,7 +87,7 @@ class ProgramsController extends Controller
          }
          else
          {
-             $msg = Myhelper::errorMessages($num);
+             $msg = $update[0]->Message;
          }
          $result = array('num' => $num, 'msg' => $msg);
          return $result;

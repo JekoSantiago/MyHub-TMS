@@ -41,7 +41,7 @@ class TrainingEmailController extends Controller
             case 'create':
                 $data['filerIndex']     = 1;
                 $data['filerName'] = $userFullName;
-                $data['filerEmail'] = 'no_reply@atp.ph';
+                $data['filerEmail'] = env('RECRUITMENT_EMAIL');
                 $data['trainingName'] = $data['training'][0]->Training;
                 $data['program'] = $data['training'][0]->Program;
                 $data['date'] = $data['training'][0]->TrainingDate;
@@ -51,7 +51,7 @@ class TrainingEmailController extends Controller
             case 'open':
                 $data['filerIndex']     = 2;
                 $data['filerName'] = $userFullName;
-                $data['filerEmail'] = 'no_reply@atp.ph';
+                $data['filerEmail'] = env('TRAINING_EMAIL');
                 $data['trainingName'] = $data['training'][0]->Training;
                 $data['program'] = $data['training'][0]->Program;
                 $data['date'] = $data['training'][0]->TrainingDate;

@@ -85,7 +85,7 @@ $(document).ready(function ()
                                     confirmButtonText: 'Ok'
                                     }).then(function (result) {
                                         if (true) {
-                                            tbl_train_emp2.draw() ;
+                                            tbl_train_emp2.ajax.reload() ;
                                         }
                                     })
 
@@ -118,13 +118,21 @@ $(document).ready(function ()
     var program=$('#program_name').text();
     var training=$('#training_name').text();
     var tbl_train_emp2 = $('#tbl_train_emp2').DataTable({
-        serverSide: true,
+        serverSide: false,
         processing: true,
         dom: 'Bfrtip',
         buttons: [
             'copy',
             {extend: 'excelHtml5',
-            title: program+" - "+training}
+            title: program+" - "+training,
+            exportOptions: {
+                columns: [ 0,1,2,3,4,5]
+            },
+            modifier: {
+                page: 'all',
+                search: 'none'
+              }},
+
         ],
         pageLength : 5,
         lengthMenu: [[5, 10, 20], [5, 10, 20]],
@@ -216,7 +224,7 @@ $(document).ready(function ()
                                     confirmButtonText: 'Ok'
                                     }).then(function (result) {
                                         if (true) {
-                                            tbl_train_emp2.draw() ;
+                                            tbl_train_emp2.ajax.reload() ;
                                         }
                                     })
 

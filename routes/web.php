@@ -86,6 +86,7 @@ Route::post('/get-prov/{id}','OptionsController@getProv');
 Route::post('/get-store','OptionsController@getStore');
 Route::get('/get-programs','OptionsController@getProgramsOptions');
 Route::get('/get-locations','OptionsController@getLocationsOptions');
+Route::post('/get-sequence','OptionsController@getSeqPrograms');
 
 //Employees
 Route::get('/employees-table','EmployeesController@getEmployees');

@@ -116,7 +116,7 @@ class TrainingController extends Controller
             }
             else
             {
-                $msg = Myhelper::errorMessages($num);
+                $msg = $update[0]->Message;
             }
             $result = array('num' => $num, 'msg' => $msg);
             return $result;

@@ -19,8 +19,17 @@
                     </select>
                 </div>
             </div>
+            <div class="row" style = "display:none" id="seqlist">
+                <div class="col-md-12 pt-1">
+                    <label for="edit_seq_program">Prior Program</label>
+                    <select id="edit_seq_program" name="edit_seq_program" class="form-control select2"
+                        data-placeholder="Select Prior Program">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 pt-1">
                     <label for="edit_program">Program <span class="text-danger">*</span></label>
                     <input id="edit_program" name="edit_program" type="text" class="form-control">
                     <label class="invalid-feedback" id="edit_program_error">Invalid program name, should be more than 1 character</label>
@@ -33,7 +42,7 @@
     </fieldset>
     <div class="text-center">
         <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-        <button type="button" id="btn_update_program" class="btn btn-primary">Save changes</button>
+        <button type="button" id="btn_update_program" class="btn btn-success">Save changes</button>
     </div>
 </form>
 
