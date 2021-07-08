@@ -97,5 +97,20 @@ class Trainings extends Model
         return DB::select('sp_enrolledProgram_get ?,?',$data);
     }
 
+    public static function checkRatingsCount($data)
+    {
+        return DB::select('sp_RatedTraining_Count ?,?',$data);
+    }
+
+    public static function checkTrainingDone($data)
+    {
+        return DB::select('sp_TrainingDone_Count ?',$data);
+    }
+
+    public static function checkRatingsApp($data)
+    {
+        return DB::select('sp_ProgramApp_New_Get ?,?,?,?,?',$data);
+    }
+
 
 }

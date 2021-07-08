@@ -300,7 +300,7 @@ $( document ).ready(function() {
             swal.fire({
                 title: 'Are you sure?',
                 text: "Updating the training",
-                icon: 'warning',
+                icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',

@@ -21,7 +21,7 @@
             </div>
             <div class="row" style = "display:none" id="seqlist">
                 <div class="col-md-12 pt-1">
-                    <label for="edit_seq_program">Prior Program</label>
+                    <label for="new_seq_program">Next Program <span style="font-size: 70%">(Note: Only programs with trainings are shown)</span></label>
                     <select id="edit_seq_program" name="edit_seq_program" class="form-control select2"
                         data-placeholder="Select Prior Program">
                         <option></option>

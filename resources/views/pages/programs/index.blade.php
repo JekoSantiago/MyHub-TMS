@@ -42,7 +42,7 @@
                             <tr>
                                 <th>Parent Program</th>
                                 <th>Program</th>
-
+                                <th style="width: 12%"> </th>
                             </tr>
                         </thead>
                         <tbody>

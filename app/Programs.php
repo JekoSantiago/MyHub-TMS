@@ -37,8 +37,19 @@ class Programs extends Model
     {
         return DB::select('sp_ProgramApp_Count ?', [$data]);
     }
+
     public static function programAppCountNull($data)
     {
         return DB::select('sp_ProgramApp_Count_Null ?', [$data]);
+    }
+
+    public static function recruitmentNotif($data)
+    {
+        return DB::select('sp_RPT_TrainedApplicants ?',$data);
+    }
+
+    public static function completeProgram($data)
+    {
+        return DB::select('sp_Program_Complete_Update ?,?', $data);
     }
 }

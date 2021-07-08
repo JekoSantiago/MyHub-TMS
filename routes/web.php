@@ -71,7 +71,7 @@ Route::post('/update-ratings-app','TrainingController@updateRatingsApp');
 Route::get('/trainings-program-app/{id}','TrainingController@getProgramApp');
 Route::post('/program-app-tbl','TrainingController@tblProgrammApp');
 Route::get('/trainings-edit-app/{id}','TrainingController@showEditTrainingApp');
-Route::post('/auto-enroll','TrainingController@getAvailablePrograms');
+// Route::post('/auto-enroll','TrainingController@getAvailablePrograms');
 Route::post('/insert-program-app','TrainingController@insertProgramApp');
 Route::post('/update-program-app','TrainingController@updateProgramApp');
 Route::post('/train-app','TrainingController@insertTrainingApp' );
@@ -79,6 +79,9 @@ Route::post('/app-del', 'TrainingController@deleteAppTraining');
 Route::post('/app-det','TrainingController@getEnrolledTraining');
 Route::post('/app-fail','TrainingController@updateFailRatings');
 Route::post('/check-rate','TrainingController@checkRatingsCount');
+Route::post('/check-train','TrainingController@checkTrainingDone');
+Route::post('/check-eligable','TrainingController@checkEligableAuto');
+Route::post('/check-ratings','TrainingController@checkRatingApp');
 
 //Options
 Route::get('/get-dc','OptionsController@getDC');
@@ -102,6 +105,7 @@ Route::post('/applicant-details-table','TraineesController@dataTableAppDet');
 
 // EMAIL
 Route::post('/email-create','TrainingEmailController@sendEmailNotif');
+Route::post('/recruitment-notif','ProgramEmailController@recruitmentNotif');
 
 
 Route::get('/zxc',function(){

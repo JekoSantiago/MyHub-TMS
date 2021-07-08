@@ -66,7 +66,7 @@ $(document).ready(function ()
         swal.fire({
             title: 'Are you sure?',
             text: "Enlist the Employee to this Training",
-            icon: 'warning',
+            icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -205,7 +205,7 @@ $(document).ready(function ()
         swal.fire({
             title: 'Are you sure?',
             text: "Remove this Employee from the list",
-            icon: 'warning',
+            icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',

@@ -143,7 +143,8 @@ class TrainingController extends Controller
             'SCT' => env('SCT'),
             'SLT' => env('SLT'),
             'ACT' => env('ACT'),
-            'AMT' => env('AMT')
+            'AMT' => env('AMT'),
+            'PG' => env('Passing')
         ]);
         $training = Trainings::getTrainingsEdit($id);
         $data['title'] = 'Applicants Training';
@@ -345,7 +346,8 @@ class TrainingController extends Controller
             'SCT' => env('SCT'),
             'SLT' => env('SLT'),
             'ACT' => env('ACT'),
-            'AMT' => env('AMT')
+            'AMT' => env('AMT'),
+            'PG' => env('Passing')
         ]);
         $datas = Programs::getProgramEdit($id);
         $data['title'] = 'Program Applicants';
@@ -367,7 +369,6 @@ class TrainingController extends Controller
     public function insertProgramApp(Request $request)
     {
 
-        // dd($request);
         $param = [
             $request -> Program_ID,
             $request -> Applicant_ID,
@@ -375,7 +376,6 @@ class TrainingController extends Controller
             $request -> recom_remarks,
             MyHelper::decrypt(Session::get('Employee_ID'))
         ];
-        // dd($param);
 
         $insert = Trainings::insertProgramApp($param);
         $num = $insert[0]->RETURN;
@@ -420,20 +420,23 @@ class TrainingController extends Controller
     public function insertTrainingApp(Request $request)
     {
         $param = [
-            $request -> auto_enroll_list,
+            $request -> Program_ID,
             $request -> Applicant_ID,
             MyHelper::decrypt(Session::get('Employee_ID'))
         ];
+        // dd($param);
 
         // dd($param);
         $insert = Trainings::trainingAppInsert($param);
 
+        // dd($insert);
+
         $num = $insert[0]->RETURN;
 
         if ($num > 0) :
-            $msg = 'Successfully enrolled';
+            $msg = 'Successfully enrolled to the next program';
         else :
-            $msg = Myhelper::errorMessages($num);
+            $msg = $insert[0]->Message;
         endif;
 
         $result = array('num' => $num, 'msg' => $msg);
@@ -501,7 +504,57 @@ class TrainingController extends Controller
             $request -> Parent_ID
         ];
         // dd($param);
-           return DB::select('exec sp_RatedTraining_Count ?,?',$param);
+           return Trainings::checkRatingsCount($param);
+    }
+
+    public function checkTrainingDone(Request $request)
+    {
+        $param = [
+            $request ->Applicant_ID
+        ];
+        return Trainings::checkTrainingDone($param);
+    }
+
+    public function checkEligableAuto(Request $request)
+    {
+        $depID = $request -> DeptPosition_ID;
+        $parentID = $request -> Parent_Program_ID;
+
+        // dd($depID,$parentID);
+        if($parentID == env('SCT'))
+        {
+            $eligable = ($depID == env('AM_ID')) ? 1 : (($depID == env('AC_ID')) ? 1 : (($depID == env('SL_ID')) ? 1 : 0));
+        }
+        elseif ($parentID == env('SLT'))
+        {
+            $eligable = ($depID == env('AM_ID')) ? 1 : (($depID == env('AC_ID')) ? 1 : 0);
+        }
+        elseif ($parentID == env('ACT'))
+        {
+            $eligable = ($depID == env('AM_ID')) ? 1 : 0;
+        }
+        else
+        {
+            $eligable = 0;
+        }
+
+        return $eligable;
+    }
+
+    public function checkRatingApp(Request $request)
+    {
+        $param = [
+            $request-> Program_ID,
+            '',
+            '',
+            '',
+            $request -> Applicant_ID
+        ];
+        $data = Trainings::checkRatingsApp($param);
+
+        return $data[0]->AveRatings;
+
+
     }
 
 }

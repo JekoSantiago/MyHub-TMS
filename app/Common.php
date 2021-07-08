@@ -44,7 +44,7 @@ class Common extends Model
     public static function getSeqProg($data)
     {
 
-        return DB::select('sp_Program_Get ?,?,?',$data);
+        return DB::select('sp_SeqProgram_Get ?,?,?',$data);
 
     }
 }

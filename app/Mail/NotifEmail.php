@@ -3,14 +3,13 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
-class TestMail extends Mailable
+class NotifEmail extends Mailable
 {
     use Queueable, SerializesModels;
-
     public $data;
 
     /**
@@ -30,7 +29,11 @@ class TestMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Mail from ItSolutionStuff.com')
-                    ->view('emails.testmail');
+        $subject = '[MyHub] TMS : Training Result';
+        return $this->subject($subject)
+        ->view('emails.recruitment_notif')
+        ->with($this->data);
+
+
     }
 }

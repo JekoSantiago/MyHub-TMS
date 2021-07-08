@@ -12,7 +12,12 @@ $(document).ready(function ()
         columns   :[
                 {data: "ParentProgram"},
                 {data:"Program",render:function(data, type, row){
-                    return '<a href="javascript:void(0) "class="text-danger editprogram">'+row.Program+'</a>'}}
+                    return '<a href="javascript:void(0) "class="text-danger editprogram">'+row.Program+'</a>'}},
+                {render:function(data,type,row){
+
+                    var button =  (row.isComplete > 0) ? '<button type="button" class="btn btn-warning complete" disabled >CLOSED</button>' : '<button type="button" class="btn btn-warning complete">CLOSE</button>'
+                    return button;
+                }}
         ],
         drawCallback: function () {
             $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
@@ -87,7 +92,7 @@ $(document).ready(function ()
             swal.fire({
                 title: 'Are you sure?',
                 text: "Adding the new Program",
-                icon: 'warning',
+                icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
@@ -107,7 +112,7 @@ $(document).ready(function ()
                                 }).then(function (result) {
                                     if (true) {
                                         $('#modal_new_program').modal('hide');
-                                        tbl_programs.draw();
+                                        tbl_programs.ajax.reload();
                                     }
                                 });
                         }
@@ -224,7 +229,7 @@ $(document).ready(function ()
             swal.fire({
                 title: 'Are you sure?',
                 text: "Updating the Program",
-                icon: 'warning',
+                icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
@@ -244,7 +249,7 @@ $(document).ready(function ()
                                 }).then(function (result) {
                                     if (true) {
                                         $('#modal_edit_program').modal('hide');
-                                        tbl_programs.draw(); ;
+                                        tbl_programs.ajax.reload();
                                     }
                                 })
                         }
@@ -372,6 +377,52 @@ $(document).ready(function ()
         });
     })
 
+
+    $('body').on('click','.complete',function(){
+        var data = tbl_programs.row( $(this).parents('tr') ).data();
+        var Program_ID = data['Program_ID'];
+
+        swal.fire({
+            title: 'Are you sure?',
+            text: "Completing the Program",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes',
+            showLoaderOnConfirm: true,
+            preConfirm:(done) =>
+            {
+                $.post(WebURL + '/recruitment-notif',{Program_ID:Program_ID},function(data){
+                    if(data.num>=0)
+                    {
+                        swal.fire({
+                            title: 'Success',
+                            text: data.msg,
+                            icon: 'success',
+                            confirmButtonText: 'Ok'
+                            }).then(function (result) {
+                                if (true) {
+                                    tbl_programs.ajax.reload();
+                                }
+                            })
+                    }
+                    else
+                    {
+                        swal.fire({
+                            title: "Warning!",
+                            text: data.msg,
+                            icon: "warning",
+                            confirmButtonText: "Ok",
+                            confirmButtonColor: '#6658dd',
+                            allowOutsideClick: false,
+                        });
+                    }
+                })
+
+            }
+          })
+    })
 
 
 ///////////

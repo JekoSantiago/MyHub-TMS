@@ -12,6 +12,10 @@
                     <fieldset>
                     <input type="hidden" id="TrainApp_ID" name = "TrainApp_ID">
                     <input type="hidden" id="Applicant_ID" name = "Applicant_ID">
+                    <input type="hidden" id="DeptPosition_ID" name = "DeptPosition_ID">
+                    <input type="hidden" id="Program_ID" name = "Program_ID">
+                    <input type="hidden" id="Parent_Program_ID" name = "Parent_Program_ID">
+                    <input type="hidden" id="Sequence_Program_ID" name = "Sequence_Program_ID">
                     <div class="form-group">
                         <div class="row pl-3">
                             <h3 id="app_name_ratings"></h3>

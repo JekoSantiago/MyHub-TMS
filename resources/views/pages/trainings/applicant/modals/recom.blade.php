@@ -78,13 +78,13 @@
                                     </select>
                                     <label class="invalid-feedback" id="recom_recom_error">Select a Recommendation.</label>
                                 </div>
-                                <div class="row-lg-6" id="auto_enroll_div" style = "display:none">
+                                {{-- <div class="row-lg-6" id="auto_enroll_div" style = "display:none">
                                     <label for="auto_enroll_list">Next Level Programs</label>
                                     <select name="auto_enroll_list" id="auto_enroll_list" class="form-control">
                                         <option></option>
                                     </select>
                                     <label class="invalid-feedback" id="auto_enroll_list_error">Select a Program</label>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="col-lg-6">
                                 <label for="recom_remarks">Remarks</label>

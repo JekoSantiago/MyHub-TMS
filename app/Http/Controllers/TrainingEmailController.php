@@ -109,7 +109,7 @@ class TrainingEmailController extends Controller
         }
         catch (Throwable $e)
         {
-            dd($e);
+            dump($e);
             return false;
         }
     }
