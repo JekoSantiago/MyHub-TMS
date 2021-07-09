@@ -823,10 +823,9 @@ $(document).ready(function ()
                         icon: 'success',
                         confirmButtonText: 'Ok',
                         showLoaderOnConfirm: true,
-                        allowOutsideClick: () => !Swal.isLoading(),
+                        allowOutsideClick: false,
                         preConfirm:() => {
-                            if (true)
-                            {
+                            return new Promise(function(resolve, reject) {
                                 if(Sequence_Program_ID.length > 0)
                                 {
                                     $.post(WebURL + '/check-eligable', {DeptPosition_ID:DeptPosition_ID,Parent_Program_ID:Parent_Program_ID},function(data)
@@ -901,7 +900,9 @@ $(document).ready(function ()
                                     $('#modal_app_rating').modal('hide');
                                     tbl_train_app.ajax.reload();
                                 }
-                            }
+
+                            });
+
                         }
                         })
 
