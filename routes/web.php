@@ -41,6 +41,7 @@ Route::get('/programs-new','ProgramsController@showNewProgram');
 Route::post('/programs-store','ProgramsController@insertNewProgram')->name('programs.insert');
 Route::get('/programs-edit/{id}','ProgramsController@showEditProgram');
 Route::post('/programs-update','ProgramsController@updateProgram')->name('programs.update');
+Route::post('/program-open','ProgramsController@openProgram');
 
 //Locations
 Route::get('/locations-table','LocationsController@getLocations')->name('locations.table');

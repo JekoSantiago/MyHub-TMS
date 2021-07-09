@@ -95,6 +95,28 @@ class ProgramsController extends Controller
 
     }
 
+    public function openProgram(Request $request)
+    {
+        $param = [
+            $request -> Program_ID,
+            $request -> isOpen,
+            MyHelper::decrypt(Session::get('Employee_ID')),
+        ];
 
+        $update = Programs::openProgram($param);
+
+        $num = $update[0]->RETURN;
+        if ($num >= 0)
+        {
+            $msg = 'Program successfully opened!';
+        }
+        else
+        {
+            $msg = $update[0]->Message;
+        }
+        $result = array('num' => $num, 'msg' => $msg);
+        return $result;
+
+    }
 
 }

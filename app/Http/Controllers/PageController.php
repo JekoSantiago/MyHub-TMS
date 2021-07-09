@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helper\MyHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Laracasts\Utilities\JavaScript\JavaScriptFacade;
 
 class PageController extends Controller
 {
@@ -45,6 +46,11 @@ class PageController extends Controller
         $data['title'] = 'Programs';
         $data['checkAccessParams']['moduleID']   = env('MODULE_PROGRAMS');
         $data['checkAccessParams']['userAccess'] = Session::get('UserAccess');
+
+        JavaScriptFacade::put([
+            'userID' =>  MyHelper::decrypt(Session::get('Employee_ID')),
+            'hrAccess' => env('HR_MANAGER_ID')
+        ]);
 
         if(!Session::has('Employee_ID') || !MyHelper::checkUserAccess($data['checkAccessParams'],env('APP_ACTION_ALL'))):
             return  redirect('/error/401');

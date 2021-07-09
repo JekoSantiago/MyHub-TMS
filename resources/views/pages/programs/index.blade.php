@@ -43,6 +43,7 @@
                                 <th>Parent Program</th>
                                 <th>Program</th>
                                 <th style="width: 12%"> </th>
+                                <th style="width: 5%">Open</th>
                             </tr>
                         </thead>
                         <tbody>

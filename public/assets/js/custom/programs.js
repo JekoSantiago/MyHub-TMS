@@ -1,6 +1,7 @@
 
 $(document).ready(function ()
 {
+    console.log(userID,hrAccess);
     var tbl_programs = $('#tbl_programs').DataTable({
         processing: true,
         serverSide: true,
@@ -14,9 +15,25 @@ $(document).ready(function ()
                 {data:"Program",render:function(data, type, row){
                     return '<a href="javascript:void(0) "class="text-danger editprogram">'+row.Program+'</a>'}},
                 {render:function(data,type,row){
-
-                    var button =  (row.isComplete > 0) ? '<button type="button" class="btn btn-warning complete" disabled >CLOSED</button>' : '<button type="button" class="btn btn-warning complete">CLOSE</button>'
+                    button = ''
+                    if(row.TrainingCount > 0)
+                    {
+                        button =  (row.isComplete > 0) ? '<button type="button" class="btn btn-warning complete" disabled >DONE</button>' : '<button type="button" class="btn btn-danger complete">COMPLETE</button>'
+                    }
                     return button;
+                }},
+                {render:function(data,type,row){
+                    var isOpen = '>'
+                    var cbox = ''
+                    if(row.isOpen > 0 && row){isOpen = 'checked>'}
+
+                    if(row.TrainingCount > 0)
+                    {
+                      cbox =  '<input type="checkbox" name="isOpen" id="isOpen" class="form-control isOpen" ' + isOpen;
+                    }
+
+                    return cbox;
+
                 }}
         ],
         drawCallback: function () {
@@ -30,6 +47,12 @@ $(document).ready(function ()
             },
             processing:'<div class="text-center"><div class="spinner spinner-border"></div></div>'
         },
+        initComplete: function() {
+            if (userID != hrAccess)
+            {
+                tbl_programs.column(3).visible(false);
+            }
+          }
     });
 
 
@@ -151,6 +174,12 @@ $(document).ready(function ()
         var programID = data['Program_ID'];
         var seqID = data['Sequence_Program_ID'];
         var progID = parentID;
+
+        $('.select2').select2();
+
+        $('.select2-no-search').select2({
+            minimumResultsForSearch: -1
+        });
 
         (seqID>0) ? $('#seqlist').show() : $('#seqlist').hide()
 
@@ -391,8 +420,11 @@ $(document).ready(function ()
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes',
             showLoaderOnConfirm: true,
+            allowOutsideClick: false,
             preConfirm:(done) =>
             {
+                return new Promise(function(resolve, reject) {
+                Swal.getCancelButton().setAttribute('disabled', '')
                 $.post(WebURL + '/recruitment-notif',{Program_ID:Program_ID},function(data){
                     if(data.num>=0)
                     {
@@ -419,11 +451,70 @@ $(document).ready(function ()
                         });
                     }
                 })
-
+            });
             }
           })
     })
 
+    $('body').on('change','.isOpen',function(){
+        var data = tbl_programs.row( $(this).parents('tr') ).data();
+        console.log(data);
+        var Program_ID = data['Program_ID'];
+        var isOpen = (data['isOpen'] == 0) ? 1:0;
+        var $text = (isOpen == 0) ? 'Closing the Program' : 'Opening the Program'
+
+        swal.fire({
+            title: 'Are you sure?',
+            text: $text,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes',
+            showLoaderOnConfirm: true,
+            allowOutsideClick: false,
+            preConfirm:(done) =>
+            {
+                return new Promise(function(resolve, reject) {
+
+                    $.post(WebURL + '/program-open' , {Program_ID:Program_ID,isOpen:isOpen}, function(data){
+                        if(data.num>=0)
+                        {
+                            swal.fire({
+                                title: 'Success',
+                                text: data.msg,
+                                icon: 'success',
+                                confirmButtonText: 'Ok'
+                                }).then(function (result) {
+                                    if (true) {
+                                        tbl_programs.ajax.reload();
+                                    }
+                                })
+                        }
+                        else
+                        {
+                            swal.fire({
+                                title: "Warning!",
+                                text: data.msg,
+                                icon: "warning",
+                                confirmButtonText: "Ok",
+                                confirmButtonColor: '#6658dd',
+                                allowOutsideClick: false,
+                            });
+                        }
+                    })
+
+                });
+
+
+            }
+          })
+
+          tbl_programs.ajax.reload();
+
+
+
+    })
 
 ///////////
 });

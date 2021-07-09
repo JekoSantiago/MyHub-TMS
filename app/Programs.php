@@ -52,4 +52,9 @@ class Programs extends Model
     {
         return DB::select('sp_Program_Complete_Update ?,?', $data);
     }
+
+    public static function openProgram($data)
+    {
+        return DB::select('sp_ProgramOpen_Update ?,?,?', $data);
+    }
 }
