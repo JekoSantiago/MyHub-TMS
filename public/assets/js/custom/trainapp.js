@@ -197,13 +197,13 @@ $(document).ready(function ()
             else if(data.Parent_Program_ID == ACT) {delID = AMT;}
             $.post(WebURL + '/app-del',{Applicant_ID:data.Applicant_ID,Parent_Program_ID:delID,ProgramApp_ID:data.ProgramApp_ID})
 
-            tbl_app_prog.ajax.reload();
+            tbl_app_prog.ajax.reload( null, false );
         }
 
         if(data.Recommendation_ID == 1 && data.AveRatings < 76)
         {
             $.post(WebURL + '/app-fail',{ProgramApp_ID:data.ProgramApp_ID})
-            tbl_app_prog.ajax.reload();
+            tbl_app_prog.ajax.reload( null, false );
         }
     },
 
@@ -441,7 +441,7 @@ $(document).ready(function ()
                                                         }).then(function (result) {
                                                             if (true) {
                                                                 $('#modal_app_recom').modal('hide');
-                                                                tbl_app_prog.ajax.reload();
+                                                                tbl_app_prog.ajax.reload( null, false );
                                                             }
                                                         });
                                                 }
@@ -460,7 +460,7 @@ $(document).ready(function ()
                                         }
 
                                         $('#modal_app_recom').modal('hide');
-                                        // tbl_app_prog.ajax.reload();
+                                        // tbl_app_prog.ajax.reload( null, false );
                                         location.reload();
                                     }
                                 });
@@ -854,7 +854,7 @@ $(document).ready(function ()
                                                                                 }).then(function (result) {
                                                                                     if (true) {
                                                                                         $('#modal_app_rating').modal('hide');
-                                                                                        tbl_train_app.ajax.reload();
+                                                                                        tbl_train_app.ajax.reload( null, false );
                                                                                     }
                                                                                 });
                                                                         }
@@ -876,7 +876,7 @@ $(document).ready(function ()
                                                         else
                                                         {
                                                             $('#modal_app_rating').modal('hide');
-                                                            tbl_train_app.ajax.reload();
+                                                            tbl_train_app.ajax.reload( null, false );
                                                         }
 
                                                     })
@@ -884,21 +884,21 @@ $(document).ready(function ()
                                                 else
                                                 {
                                                     $('#modal_app_rating').modal('hide');
-                                                    tbl_train_app.ajax.reload();
+                                                    tbl_train_app.ajax.reload( null, false );
                                                 }
                                             })
                                         }
                                         else
                                         {
                                             $('#modal_app_rating').modal('hide');
-                                            tbl_train_app.ajax.reload();
+                                            tbl_train_app.ajax.reload( null, false );
                                         }
                                     })
                                 }
                                 else
                                 {
                                     $('#modal_app_rating').modal('hide');
-                                    tbl_train_app.ajax.reload();
+                                    tbl_train_app.ajax.reload( null, false );
                                 }
 
                             });

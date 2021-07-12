@@ -135,7 +135,7 @@ $(document).ready(function ()
                                 }).then(function (result) {
                                     if (true) {
                                         $('#modal_new_program').modal('hide');
-                                        tbl_programs.ajax.reload();
+                                        tbl_programs.ajax.reload( null, false );
                                     }
                                 });
                         }
@@ -278,7 +278,7 @@ $(document).ready(function ()
                                 }).then(function (result) {
                                     if (true) {
                                         $('#modal_edit_program').modal('hide');
-                                        tbl_programs.ajax.reload();
+                                        tbl_programs.ajax.reload( null, false );
                                     }
                                 })
                         }
@@ -435,7 +435,7 @@ $(document).ready(function ()
                             confirmButtonText: 'Ok'
                             }).then(function (result) {
                                 if (true) {
-                                    tbl_programs.ajax.reload();
+                                    tbl_programs.ajax.reload( null, false );
                                 }
                             })
                     }
@@ -487,7 +487,7 @@ $(document).ready(function ()
                                 confirmButtonText: 'Ok'
                                 }).then(function (result) {
                                     if (true) {
-                                        tbl_programs.ajax.reload();
+                                        tbl_programs.ajax.reload( null, false );
                                     }
                                 })
                         }
@@ -510,7 +510,7 @@ $(document).ready(function ()
             }
           })
 
-          tbl_programs.ajax.reload();
+          tbl_programs.ajax.reload( null, false );
 
 
 
