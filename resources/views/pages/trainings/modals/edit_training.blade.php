@@ -104,11 +104,11 @@
                                             <label for="edit_training_ratings" class="form-check-label mx-auto pt-2">Ratings</label>
                                             <input type="checkbox" name="edit_training_ratings" id="edit_training_ratings" class="form-control mx-auto pt-2" value='1'>
                                         </div>
-                                        <div class="col-4">
+                                        {{-- <div class="col-4">
                                             <label for="edit_isOpen" class="form-check-label mx-auto pt-2 ">Open</label>
                                             <input type="checkbox" name="edit_isOpen" id="edit_isOpen" class="form-control mx-auto pt-2" value='1'
                                             @if(MyHelper::decrypt(Session::get('Employee_ID')) != env('HR_MANAGER_ID')) disabled  @endif>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
 

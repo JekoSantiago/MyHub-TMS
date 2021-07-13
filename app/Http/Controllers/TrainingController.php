@@ -103,7 +103,6 @@ class TrainingController extends Controller
             $request->edit_hrs_training,
             $request->edit_training_status,
             $request->edit_training_ratings,
-            $request->edit_isOpen
         );
 
             $update = Trainings::updateTraining($data);

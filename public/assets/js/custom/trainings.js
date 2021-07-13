@@ -192,14 +192,14 @@ $(document).ready(function ()
             $('#edit_training_ratings').prop('checked',false);
 
         }
-        if(isOpen == null)
-        {
-            $('#edit_isOpen').prop('checked',false);
-        }
-        else
-        {
-            $('#edit_isOpen').prop('checked',true);
-        }
+        // if(isOpen == null)
+        // {
+        //     $('#edit_isOpen').prop('checked',false);
+        // }
+        // else
+        // {
+        //     $('#edit_isOpen').prop('checked',true);
+        // }
 
         if (locID > 0)
         {

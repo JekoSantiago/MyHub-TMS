@@ -313,13 +313,13 @@ $( document ).ready(function() {
                         if(data.num>=0)
                         {
                             //EMAIL SENDING
-                            if(open == 1)
-                            {
-                            var trainID = data.num;
-                            console.log(trainID);
-                            $.post(WebURL + '/email-create',{trainingID:trainID,action:'open'});
-                            console.log('emailsent');
-                            }
+                            // if(open == 1)
+                            // {
+                            // var trainID = data.num;
+                            // console.log(trainID);
+                            // $.post(WebURL + '/email-create',{trainingID:trainID,action:'open'});
+                            // console.log('emailsent');
+                            // }
                             //
                             swal.fire({
                                 title: 'Success',

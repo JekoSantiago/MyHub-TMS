@@ -23,7 +23,7 @@ class Trainings extends Model
 
     public static function updateTraining($data)
     {
-        return DB::select('sp_Training_update ?,?,?,?,?,?,?,?,?,?,?,?,?',$data);
+        return DB::select('sp_Training_update ?,?,?,?,?,?,?,?,?,?,?,?',$data);
 
     }
 
