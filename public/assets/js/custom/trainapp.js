@@ -877,6 +877,7 @@ $(document).ready(function ()
                                                         {
                                                             $('#modal_app_rating').modal('hide');
                                                             tbl_train_app.ajax.reload( null, false );
+                                                            swal.close();
                                                         }
 
                                                     })
@@ -885,6 +886,7 @@ $(document).ready(function ()
                                                 {
                                                     $('#modal_app_rating').modal('hide');
                                                     tbl_train_app.ajax.reload( null, false );
+                                                    swal.close();
                                                 }
                                             })
                                         }
@@ -892,13 +894,40 @@ $(document).ready(function ()
                                         {
                                             $('#modal_app_rating').modal('hide');
                                             tbl_train_app.ajax.reload( null, false );
+                                            swal.close();
                                         }
                                     })
                                 }
                                 else
                                 {
-                                    $('#modal_app_rating').modal('hide');
-                                    tbl_train_app.ajax.reload( null, false );
+                                    $.post(WebURL + '/train-app',{Program_ID:Sequence_Program_ID,Applicant_ID:Applicant_ID},function(data){
+                                        if(data.num>0)
+                                        {
+
+                                            swal.fire({
+                                                title: 'Success',
+                                                text: data.msg,
+                                                icon: 'success',
+                                                confirmButtonText: 'Ok',
+                                                }).then(function (result) {
+                                                    if (true) {
+                                                        $('#modal_app_rating').modal('hide');
+                                                        tbl_train_app.ajax.reload( null, false );
+                                                    }
+                                                });
+                                        }
+                                        else
+                                        {
+                                            swal.fire({
+                                                title: "Warning!",
+                                                text: data.msg,
+                                                icon: "warning",
+                                                confirmButtonText: "Ok",
+                                                confirmButtonColor: '#6658dd',
+                                                allowOutsideClick: false,
+                                            });
+                                        }
+                                    },'JSON');
                                 }
 
                             });
