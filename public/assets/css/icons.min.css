@@ -8,10 +8,11 @@ File: Icons Css File
 */
 @font-face {
   font-family: "dripicons-v2";
-  src: url("/ATS/assets/fonts/dripicons-v2.eot");
-  src: url("/ATS/assets/fonts/dripicons-v2.eot?#iefix") format("embedded-opentype"), url("/ATS/assets/fonts/dripicons-v2.woff") format("woff"), url("/ATS/assets/fonts/dripicons-v2.ttf") format("truetype"), url("/ATS/assets/fonts/dripicons-v2.svg#dripicons-v2") format("svg");
+  src: url("..//fonts/dripicons-v2.eot");
+  src: url("..//fonts/dripicons-v2.eot?#iefix") format("embedded-opentype"), url("..//fonts/dripicons-v2.woff") format("woff"), url("..//fonts/dripicons-v2.ttf") format("truetype"), url("..//fonts/dripicons-v2.svg#dripicons-v2") format("svg");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 [data-icon]:before {
   font-family: "dripicons-v2" !important;
@@ -841,10 +842,11 @@ File: Icons Css File
 
 @font-face {
   font-family: "Material Design Icons";
-  src: url("/ATS/assets/fonts/materialdesignicons-webfont.eot?v=5.0.45");
-  src: url("/ATS/assets/fonts/materialdesignicons-webfont.eot?#iefix&v=5.0.45") format("embedded-opentype"), url("/ATS/assets/fonts/materialdesignicons-webfont.woff2?v=5.0.45") format("woff2"), url("/ATS/assets/fonts/materialdesignicons-webfont.woff?v=5.0.45") format("woff"), url("/ATS/assets/fonts/materialdesignicons-webfont.ttf?v=5.0.45") format("truetype");
+  src: url("..//fonts/materialdesignicons-webfont.eot?v=5.0.45");
+  src: url("..//fonts/materialdesignicons-webfont.eot?#iefix&v=5.0.45") format("embedded-opentype"), url("..//fonts/materialdesignicons-webfont.woff2?v=5.0.45") format("woff2"), url("..//fonts/materialdesignicons-webfont.woff?v=5.0.45") format("woff"), url("..//fonts/materialdesignicons-webfont.ttf?v=5.0.45") format("truetype");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 .mdi:before, .mdi-set {
   display: inline-block;
@@ -21138,10 +21140,11 @@ File: Icons Css File
 }
 @font-face {
   font-family: "feather";
-  src: url("/ATS/assets/fonts/feather.eot?t=1525787366991");
+  src: url("..//fonts/feather.eot?t=1525787366991");
   /* IE9*/
-  src: url("/ATS/assets/fonts/feather.eot?t=1525787366991#iefix") format("embedded-opentype"), url("/ATS/assets/fonts/feather.woff?t=1525787366991") format("woff"), url("/ATS/assets/fonts/feather.ttf?t=1525787366991") format("truetype"), url("/ATS/assets/fonts/feather.svg?t=1525787366991#feather") format("svg");
+  src: url("..//fonts/feather.eot?t=1525787366991#iefix") format("embedded-opentype"), url("..//fonts/feather.woff?t=1525787366991") format("woff"), url("..//fonts/feather.ttf?t=1525787366991") format("truetype"), url("..//fonts/feather.svg?t=1525787366991#feather") format("svg");
   /* iOS 4.1- */
+  font-display: swap;
 }
 [class^=fe-] {
   /* use !important to prevent issues with browser extensions that change fonts */
@@ -22247,10 +22250,11 @@ File: Icons Css File
 
 @font-face {
   font-family: "themify";
-  src: url("/ATS/assets/fonts/themify.eot?-fvbane");
-  src: url("/ATS/assets/fonts/themify.eot?#iefix-fvbane") format("embedded-opentype"), url("/ATS/assets/fonts/themify.woff?-fvbane") format("woff"), url("/ATS/assets/fonts/themify.ttf?-fvbane") format("truetype"), url("/ATS/assets/fonts/themify.svg?-fvbane#themify") format("svg");
+  src: url("..//fonts/themify.eot?-fvbane");
+  src: url("..//fonts/themify.eot?#iefix-fvbane") format("embedded-opentype"), url("..//fonts/themify.woff?-fvbane") format("woff"), url("..//fonts/themify.ttf?-fvbane") format("truetype"), url("..//fonts/themify.svg?-fvbane#themify") format("svg");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 [class^=ti-], [class*=" ti-"] {
   font-family: "themify";
@@ -29674,8 +29678,9 @@ readers do not read off random characters that represent icons */
   font-style: normal;
   font-weight: 400;
   font-display: block;
-  src: url("/ATS/assets/fonts/fa-brands-400.eot");
-  src: url("/ATS/assets/fonts/fa-brands-400.eot?#iefix") format("embedded-opentype"), url("/ATS/assets/fonts/fa-brands-400.woff2") format("woff2"), url("/ATS/assets/fonts/fa-brands-400.woff") format("woff"), url("/ATS/assets/fonts/fa-brands-400.ttf") format("truetype"), url("/ATS/assets/fonts/fa-brands-400.svg#fontawesome") format("svg");
+  src: url("..//fonts/fa-brands-400.eot");
+  src: url("..//fonts/fa-brands-400.eot?#iefix") format("embedded-opentype"), url("..//fonts/fa-brands-400.woff2") format("woff2"), url("..//fonts/fa-brands-400.woff") format("woff"), url("..//fonts/fa-brands-400.ttf") format("truetype"), url("..//fonts/fa-brands-400.svg#fontawesome") format("svg");
+  font-display: swap;
 }
 .fab {
   font-family: "Font Awesome 5 Brands";
@@ -29687,8 +29692,9 @@ readers do not read off random characters that represent icons */
   font-style: normal;
   font-weight: 400;
   font-display: block;
-  src: url("/ATS/assets/fonts/fa-regular-400.eot");
-  src: url("/ATS/assets/fonts/fa-regular-400.eot?#iefix") format("embedded-opentype"), url("/ATS/assets/fonts/fa-regular-400.woff2") format("woff2"), url("/ATS/assets/fonts/fa-regular-400.woff") format("woff"), url("/ATS/assets/fonts/fa-regular-400.ttf") format("truetype"), url("/ATS/assets/fonts/fa-regular-400.svg#fontawesome") format("svg");
+  src: url("..//fonts/fa-regular-400.eot");
+  src: url("..//fonts/fa-regular-400.eot?#iefix") format("embedded-opentype"), url("..//fonts/fa-regular-400.woff2") format("woff2"), url("..//fonts/fa-regular-400.woff") format("woff"), url("..//fonts/fa-regular-400.ttf") format("truetype"), url("..//fonts/fa-regular-400.svg#fontawesome") format("svg");
+  font-display: swap;
 }
 .far {
   font-family: "Font Awesome 5 Free";
@@ -29700,8 +29706,9 @@ readers do not read off random characters that represent icons */
   font-style: normal;
   font-weight: 900;
   font-display: block;
-  src: url("/ATS/assets/fonts/fa-solid-900.eot");
-  src: url("/ATS/assets/fonts/fa-solid-900.eot?#iefix") format("embedded-opentype"), url("/ATS/assets/fonts/fa-solid-900.woff2") format("woff2"), url("/ATS/assets/fonts/fa-solid-900.woff") format("woff"), url("/ATS/assets/fonts/fa-solid-900.ttf") format("truetype"), url("/ATS/assets/fonts/fa-solid-900.svg#fontawesome") format("svg");
+  src: url("..//fonts/fa-solid-900.eot");
+  src: url("..//fonts/fa-solid-900.eot?#iefix") format("embedded-opentype"), url("..//fonts/fa-solid-900.woff2") format("woff2"), url("..//fonts/fa-solid-900.woff") format("woff"), url("..//fonts/fa-solid-900.ttf") format("truetype"), url("..//fonts/fa-solid-900.svg#fontawesome") format("svg");
+  font-display: swap;
 }
 .fa,
 .fas {
@@ -29711,10 +29718,11 @@ readers do not read off random characters that represent icons */
 
 @font-face {
   font-family: "simple-line-icons";
-  src: url("/ATS/assets/fonts/simple-Line-Icons.eot?-i3a2kk");
-  src: url("/ATS/assets/fonts/simple-Line-Icons.eot?#iefix-i3a2kk") format("embedded-opentype"), url("/ATS/assets/fonts/simple-Line-Icons.ttf?-i3a2kk") format("truetype"), url("/ATS/assets/fonts/simple-Line-Icons.woff2?-i3a2kk") format("woff2"), url("/ATS/assets/fonts/simple-Line-Icons.woff?-i3a2kk") format("woff"), url("/ATS/assets/fonts/simple-Line-Icons.svg?-i3a2kk#simple-line-icons") format("svg");
+  src: url("..//fonts/simple-Line-Icons.eot?-i3a2kk");
+  src: url("..//fonts/simple-Line-Icons.eot?#iefix-i3a2kk") format("embedded-opentype"), url("..//fonts/simple-Line-Icons.ttf?-i3a2kk") format("truetype"), url("..//fonts/simple-Line-Icons.woff2?-i3a2kk") format("woff2"), url("..//fonts/simple-Line-Icons.woff?-i3a2kk") format("woff"), url("..//fonts/simple-Line-Icons.svg?-i3a2kk#simple-line-icons") format("svg");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 .icon-user, .icon-people, .icon-user-female, .icon-user-follow, .icon-user-following, .icon-user-unfollow, .icon-login, .icon-logout, .icon-emotsmile, .icon-phone, .icon-call-end, .icon-call-in, .icon-call-out, .icon-map, .icon-location-pin, .icon-direction, .icon-directions, .icon-compass, .icon-layers, .icon-menu, .icon-list, .icon-options-vertical, .icon-options, .icon-arrow-down, .icon-arrow-left, .icon-arrow-right, .icon-arrow-up, .icon-arrow-up-circle, .icon-arrow-left-circle, .icon-arrow-right-circle, .icon-arrow-down-circle, .icon-check, .icon-clock, .icon-plus, .icon-close, .icon-trophy, .icon-screen-smartphone, .icon-screen-desktop, .icon-plane, .icon-notebook, .icon-mustache, .icon-mouse, .icon-magnet, .icon-energy, .icon-disc, .icon-cursor, .icon-cursor-move, .icon-crop, .icon-chemistry, .icon-speedometer, .icon-shield, .icon-screen-tablet, .icon-magic-wand, .icon-hourglass, .icon-graduation, .icon-ghost, .icon-game-controller, .icon-fire, .icon-eyeglass, .icon-envelope-open, .icon-envelope-letter, .icon-bell, .icon-badge, .icon-anchor, .icon-wallet, .icon-vector, .icon-speech, .icon-puzzle, .icon-printer, .icon-present, .icon-playlist, .icon-pin, .icon-picture, .icon-handbag, .icon-globe-alt, .icon-globe, .icon-folder-alt, .icon-folder, .icon-film, .icon-feed, .icon-drop, .icon-drawar, .icon-docs, .icon-doc, .icon-diamond, .icon-cup, .icon-calculator, .icon-bubbles, .icon-briefcase, .icon-book-open, .icon-basket-loaded, .icon-basket, .icon-bag, .icon-action-undo, .icon-action-redo, .icon-wrench, .icon-umbrella, .icon-trash, .icon-tag, .icon-support, .icon-frame, .icon-size-fullscreen, .icon-size-actual, .icon-shuffle, .icon-share-alt, .icon-share, .icon-rocket, .icon-question, .icon-pie-chart, .icon-pencil, .icon-note, .icon-loop, .icon-home, .icon-grid, .icon-graph, .icon-microphone, .icon-music-tone-alt, .icon-music-tone, .icon-earphones-alt, .icon-earphones, .icon-equalizer, .icon-like, .icon-dislike, .icon-control-start, .icon-control-rewind, .icon-control-play, .icon-control-pause, .icon-control-forward, .icon-control-end, .icon-volume-1, .icon-volume-2, .icon-volume-off, .icon-calender, .icon-bulb, .icon-chart, .icon-ban, .icon-bubble, .icon-camrecorder, .icon-camera, .icon-cloud-download, .icon-cloud-upload, .icon-envelope, .icon-eye, .icon-flag, .icon-heart, .icon-info, .icon-key, .icon-link, .icon-lock, .icon-lock-open, .icon-magnifier, .icon-magnifier-add, .icon-magnifier-remove, .icon-paper-clip, .icon-paper-plane, .icon-power, .icon-refresh, .icon-reload, .icon-settings, .icon-star, .icon-symble-female, .icon-symbol-male, .icon-target, .icon-credit-card, .icon-paypal, .icon-social-tumblr, .icon-social-twitter, .icon-social-facebook, .icon-social-instagram, .icon-social-linkedin, .icon-social-pintarest, .icon-social-github, .icon-social-gplus, .icon-social-reddit, .icon-social-skype, .icon-social-dribbble, .icon-social-behance, .icon-social-foursqare, .icon-social-soundcloud, .icon-social-spotify, .icon-social-stumbleupon, .icon-social-youtube, .icon-social-dropbox {
   font-family: "simple-line-icons";
@@ -30484,10 +30492,11 @@ readers do not read off random characters that represent icons */
  */
 @font-face {
   font-family: "weathericons";
-  src: url("/ATS/assets/fonts/weathericons-regular-webfont.eot");
-  src: url("/ATS/assets/fonts/weathericons-regular-webfont.eot?#iefix") format("embedded-opentype"), url("/ATS/assets/fonts/weathericons-regular-webfont.woff2") format("woff2"), url("/ATS/assets/fonts/weathericons-regular-webfont.woff") format("woff"), url("/ATS/assets/fonts/weathericons-regular-webfont.ttf") format("truetype"), url("/ATS/assets/fonts/weathericons-regular-webfont.svg#weather_iconsregular") format("svg");
+  src: url("..//fonts/weathericons-regular-webfont.eot");
+  src: url("..//fonts/weathericons-regular-webfont.eot?#iefix") format("embedded-opentype"), url("..//fonts/weathericons-regular-webfont.woff2") format("woff2"), url("..//fonts/weathericons-regular-webfont.woff") format("woff"), url("..//fonts/weathericons-regular-webfont.ttf") format("truetype"), url("..//fonts/weathericons-regular-webfont.svg#weather_iconsregular") format("svg");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 .wi {
   display: inline-block;
