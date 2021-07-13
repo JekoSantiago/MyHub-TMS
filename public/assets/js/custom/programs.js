@@ -16,7 +16,7 @@ $(document).ready(function ()
                     return '<a href="javascript:void(0) "class="text-danger editprogram">'+row.Program+'</a>'}},
                 {render:function(data,type,row){
                     button = ''
-                    if(row.TrainingCount > 0)
+                    if(row.ApplicantCount > 0)
                     {
                         button =  (row.isComplete > 0) ? '<button type="button" class="btn btn-warning complete" disabled >DONE</button>' : '<button type="button" class="btn btn-danger complete">COMPLETE</button>'
                     }
