@@ -11,6 +11,7 @@ class NotifEmail extends Mailable
 {
     use Queueable, SerializesModels;
     public $data;
+    public $subject;
 
     /**
      * Create a new message instance.
@@ -29,7 +30,8 @@ class NotifEmail extends Mailable
      */
     public function build()
     {
-        $subject = '[MyHub] TMS : Training Result';
+
+        $subject = '[MyHub] TMS : Training Result - ' . $this->data[0]->Program ;
         return $this->subject($subject)
         ->view('emails.recruitment_notif')
         ->with($this->data);
