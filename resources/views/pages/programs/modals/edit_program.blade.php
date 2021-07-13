@@ -23,7 +23,7 @@
                 <div class="col-md-12 pt-1">
                     <label for="new_seq_program">Next Program <span style="font-size: 70%">(Note: Only programs with trainings are shown)</span></label>
                     <select id="edit_seq_program" name="edit_seq_program" class="form-control select2"
-                        data-placeholder="Select Prior Program">
+                        data-placeholder="Select Next Program">
                         <option></option>
                     </select>
                 </div>
