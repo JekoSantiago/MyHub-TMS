@@ -41,6 +41,7 @@
                         <thead>
                             <tr>
                                 <th>Location</th>
+                                <th>DC</th>
                                 <th>Capacity</th>
                             </tr>
                         </thead>

@@ -21,6 +21,7 @@ class LocationsController extends Controller
         $data = array(
             $request->new_location,
             $request->new_capacity,
+            $request->new_dc,
             MyHelper::decrypt(Session::get('Employee_ID'))
         );
 
@@ -55,6 +56,7 @@ class LocationsController extends Controller
             $request->edit_location_ID,
             $request->edit_location,
             $request->edit_capacity,
+            $request->edit_dc,
             MyHelper::decrypt(Session::get('Employee_ID'))
         );
 

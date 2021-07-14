@@ -11,6 +11,7 @@ $(document).ready(function ()
         columns   :[
             {data:"Location",render:function(data, type, row){
                 return '<a href="javascript:void(0)" class="text-danger editlocation">'+row.Location+'</a>'}},
+            {data: "DC"},
             {data:"Capacity"}
         ],
         language: {
@@ -35,6 +36,24 @@ $(document).ready(function ()
 
         $("#modal_new_location").find('.modal-body').html('<div class="text-center"><div class="spinner spinner-border"></div></div>');
         $('#modal_new_location').find('.modal-body').load(remoteLink, formdata)
+
+        $('.select2-no-search').select2({
+            minimumResultsForSearch: -1
+        });
+
+        $.ajax({
+            url:WebURL+'/get-dc',
+            type:'GET',
+            dataType: 'text',
+            cache: false,
+            success: function (data) {
+                $('#new_dc').html(data);
+            },
+            error: function () {
+                console.log('error');
+            }
+        })
+
     });
 
     //Add new Location
@@ -43,7 +62,8 @@ $(document).ready(function ()
         var error = false;
         var location = $('#new_location').val();
         var capacity = $('#new_capacity').val();
-
+        var DC_ID = $('#new_dc').val();
+        console.log(DC_ID);
 
         if(location.length<=1)
         {
@@ -56,6 +76,19 @@ $(document).ready(function ()
 
             $('#new_location').removeClass('error-input');
             $('#new_location_error').hide();
+        }
+
+        if(DC_ID.length<=0)
+        {
+            var error = true;
+            $('#new_dc').addClass('error-input');
+            $('#new_dc_error').show();
+        }
+        else
+        {
+
+            $('#new_dc').removeClass('error-input');
+            $('#new_dc_error').hide();
         }
 
         if(capacity<=0)
@@ -132,12 +165,30 @@ $(document).ready(function ()
         var loc = data['Location'];
         var locID = data['Location_ID'];
         var capacity = data['Capacity'];
+        var DC_ID = data['DC_ID']
 
         $('#modal_edit_location').modal('show');
 
         $('#edit_location_ID').val(locID);
         $('#edit_location').val(loc);
         $('#edit_capacity').val(capacity);
+
+        $.ajax({
+            url:WebURL+'/get-dc',
+            type:'GET',
+            dataType: 'text',
+            cache: false,
+            success: function (data) {
+                $('#edit_dc').html(data);
+                $('#edit_dc').val(DC_ID);
+
+            },
+            error: function () {
+                console.log('error');
+            }
+        })
+
+
 
 
 

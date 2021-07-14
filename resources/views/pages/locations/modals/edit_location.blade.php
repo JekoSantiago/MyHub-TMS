@@ -17,11 +17,20 @@
                                     <label class="invalid-feedback" id="edit_location_error">Invalid location name, should be more than 1 character</label>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row pt-1">
                                 <div class="col-md-4">
                                     <label for="edit_capacity">Capacity <span class="text-danger">*</span></label>
                                     <input id="edit_capacity" name="edit_capacity" type="number" class="form-control" min="1">
                                     <label class="invalid-feedback" id="edit_capacity_error">Capacity should be more than 0</label>
+                                </div>
+                            </div>
+                            <div class="row pt-1">
+                                <div class="col-md-4">
+                                    <label for="edit_dc">DC <span class="text-danger">*</span></label>
+                                    <select id="edit_dc" name="edit_dc" class="form-control select2-no-search" min="1">
+                                        <option value="0"></option>
+                                    </select>
+                                    <label class="invalid-feedback" id="edit_dc_error">Select a DC</label>
                                 </div>
                             </div>
 
