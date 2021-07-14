@@ -456,7 +456,7 @@ class TrainingController extends Controller
         ];
 
 
-           Trainings::deleteAppTraining($param2);
+           Trainings::deleteProgramApp($param2);
            return Trainings::deleteAppTraining($param);
 
     }
