@@ -556,4 +556,23 @@ class TrainingController extends Controller
 
     }
 
+    public function recomCount(Request $request)
+    {
+        $id = $request->Program_ID;
+
+        $count = Programs::programAppCount($id);
+        $countN = Programs::programAppCountNull($id);
+
+        $HaveRec = ($count[0]->total - $countN[0]->total);
+        $ForRec = ($countN[0]->total);
+
+
+        $data = [
+            'HaveRec' => $HaveRec,
+            'ForRec' => $ForRec
+        ];
+
+        return $data;
+    }
+
 }

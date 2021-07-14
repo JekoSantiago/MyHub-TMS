@@ -72,6 +72,7 @@ Route::post('/update-ratings-app','TrainingController@updateRatingsApp');
 Route::get('/trainings-program-app/{id}','TrainingController@getProgramApp');
 Route::post('/program-app-tbl','TrainingController@tblProgrammApp');
 Route::get('/trainings-edit-app/{id}','TrainingController@showEditTrainingApp');
+Route::post('/recom-count','TrainingController@recomCount');
 // Route::post('/auto-enroll','TrainingController@getAvailablePrograms');
 Route::post('/insert-program-app','TrainingController@insertProgramApp');
 Route::post('/update-program-app','TrainingController@updateProgramApp');

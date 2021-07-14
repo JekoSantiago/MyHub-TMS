@@ -19,10 +19,10 @@
         <h5>Total Applicant : {{ $count[0]->total }}</h5>
     </div>
     <div class="col-lg-3 pt-2 pl-2">
-        <h5 class = "text-blue">Have Recommendation : {{ $HaveR }} </h5>
+        <h5 class = "text-blue" >Have Recommendation : <span id="HaveRec"> {{ $HaveR }}</span></h5>
     </div>
     <div class="col-lg-3 pt-2 pl-2">
-        <h5 class = "text-danger">For Recommendation :{{ $countN[0]->total }} </h5>
+        <h5 class = "text-danger">For Recommendation : <span id="ForRec"> {{ $countN[0]->total }} </span></h5>
     </div>
 </div>
 

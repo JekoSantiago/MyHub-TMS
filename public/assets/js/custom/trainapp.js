@@ -382,20 +382,7 @@ $(document).ready(function ()
             $('#recom_remarks').removeClass('error-input');
             $('#recom_remarks_error').hide();
         }
-        // if (recom == 6)
-        // {
-        //     if ($('#auto_enroll_list').val() == null || $('#auto_enroll_list').val() == 0 )
-        //     {
-        //         error = true;
-        //         $('#auto_enroll_list').addClass('error-input');
-        //         $('#auto_enroll_list_error').show();
-        //     }
-        //     else
-        //     {
-        //         $('#auto_enroll_list').removeClass('error-input');
-        //         $('#auto_enroll_list_error').hide();
-        //     }
-        // }
+
 
         if (error == false)
         {
@@ -415,10 +402,7 @@ $(document).ready(function ()
                         $.post(WebURL + '/insert-program-app',formdata,function(data){
                         if(data.num>0)
                         {
-                            // //EMAIL SENDING
-                            // var trainID = data.num;
-                            // $.post(WebURL + '/email-create',{trainingID:trainID,action:'create'})
-                            // //
+
                             swal.fire({
                                 title: 'Success',
                                 text: data.msg,
@@ -427,41 +411,15 @@ $(document).ready(function ()
                                 }).then(function (result) {
                                     if (true) {
 
-                                        if(recom == 6 && insertDate == "")
-                                        {
-                                            $.post(WebURL + '/train-app',formdata,function(data){
-                                                if(data.num>0)
-                                                {
-
-                                                    swal.fire({
-                                                        title: 'Success',
-                                                        text: data.msg,
-                                                        icon: 'success',
-                                                        confirmButtonText: 'Ok',
-                                                        }).then(function (result) {
-                                                            if (true) {
-                                                                $('#modal_app_recom').modal('hide');
-                                                                tbl_app_prog.ajax.reload( null, false );
-                                                            }
-                                                        });
-                                                }
-                                                else
-                                                {
-                                                    swal.fire({
-                                                        title: "Warning!",
-                                                        text: data.msg,
-                                                        icon: "warning",
-                                                        confirmButtonText: "Ok",
-                                                        confirmButtonColor: '#6658dd',
-                                                        allowOutsideClick: false,
-                                                    });
-                                                }
-                                            },'JSON');
-                                        }
-
+                                        var Program_ID = $('#Program_ID').val();
                                         $('#modal_app_recom').modal('hide');
-                                        // tbl_app_prog.ajax.reload( null, false );
-                                        location.reload();
+                                        tbl_app_prog.ajax.reload( null, false );
+
+                                        $.post(WebURL + '/recom-count', {Program_ID:Program_ID}, function(data){
+
+                                            $('#HaveRec').text(data.HaveRec);
+                                            $('#ForRec').text(data.ForRec);
+                                        })
                                     }
                                 });
                         }
