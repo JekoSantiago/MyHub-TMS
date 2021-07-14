@@ -112,5 +112,10 @@ class Trainings extends Model
         return DB::select('sp_ProgramApp_New_Get ?,?,?,?,?',$data);
     }
 
+    public static function deleteProgramApp($data)
+    {
+        return DB::select('sp_ProgramApp_Delete ?', $data);
+    }
+
 
 }

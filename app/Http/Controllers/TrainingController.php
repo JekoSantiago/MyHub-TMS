@@ -453,18 +453,10 @@ class TrainingController extends Controller
 
         $param2 = [
             $request -> ProgramApp_ID,
-            null,
-            null,
         ];
 
-           if($request -> ProgramApp_ID == null || $request -> ProgramApp_ID == '')
-           {
-                DB::statement('exec sp_ProgramApp_Update ?,?,?', $param2);
-           }
-           else
-           {
 
-           }
+           Trainings::deleteAppTraining($param2);
            return Trainings::deleteAppTraining($param);
 
     }
