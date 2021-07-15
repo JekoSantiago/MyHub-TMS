@@ -341,7 +341,7 @@ $(document).ready(function ()
                         }).then(function (result) {
                             if (true) {
                                 $('#modal_emp_rating').modal('hide');
-                                tbl_train_emp2.draw();
+                                tbl_train_emp2.ajax.reload(null,false);
                             }
                         });
                 }

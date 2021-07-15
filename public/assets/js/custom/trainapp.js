@@ -5,7 +5,6 @@ $.ajaxSetup({
 });
 $(document).ready(function ()
 {
-    console.log(SCT);
 
     //
     // Applicants Table
@@ -559,7 +558,7 @@ $(document).ready(function ()
                                         // }
 
                                         $('#modal_app_recom').modal('hide');
-                                        tbl_app_prog.draw();
+                                        tbl_app_prog.ajax.reload(null,false);
 
                                     }
                                 });

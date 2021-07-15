@@ -129,7 +129,7 @@ $(document).ready(function ()
                                 }).then(function (result) {
                                     if (true) {
                                         $('#modal_new_location').modal('hide');
-                                        tbl_location.draw() ;
+                                        tbl_location.ajax.reload(null,false) ;
                                     }
                                   })
 
@@ -256,7 +256,7 @@ $(document).ready(function ()
                                 }).then(function (result) {
                                     if (true) {
                                         $('#modal_edit_location').modal('hide');
-                                        tbl_location.draw() ;
+                                        tbl_location.ajax.reload(null,false) ;
                                     }
                                 })
                         }

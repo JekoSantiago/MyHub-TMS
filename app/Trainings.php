@@ -114,7 +114,7 @@ class Trainings extends Model
 
     public static function deleteProgramApp($data)
     {
-        return DB::select('sp_ProgramApp_Delete ?', $data);
+        return DB::statement('exec sp_ProgramApp_Delete ?', $data);
     }
 
 
