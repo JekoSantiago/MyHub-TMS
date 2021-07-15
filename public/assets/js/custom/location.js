@@ -202,6 +202,7 @@ $(document).ready(function ()
         var error = false;
         var location = $('#edit_location').val();
         var capacity = $('#edit_capacity').val();
+        var DC_ID = $('#edit_dc').val();
 
         console.log(location.length);
 
@@ -229,6 +230,20 @@ $(document).ready(function ()
 
             $('#edit_capacity').removeClass('error-input');
             $('#edit_capacity_error').hide();
+        }
+
+
+        if(DC_ID.length<=0)
+        {
+            var error = true;
+            $('#edit_dc').addClass('error-input');
+            $('#edit_dc_error').show();
+        }
+        else
+        {
+
+            $('#edit_dc').removeClass('error-input');
+            $('#edit_dc_error').hide();
         }
 
         if (error == false)
