@@ -53,9 +53,8 @@ class OptionsController extends Controller
     {
         $data = Location::getLocations();
         $output = '<option></option>';
-
         foreach($data as $loc) :
-            $output .= '<option value="'. $loc->Location_ID .'">'. $loc->Location .'</option>';
+            $output .= '<option value="'. $loc->Location_ID .'" name="'. $loc->Capacity .'">'. $loc->Location .'</option>';
         endforeach;
 
         echo $output;
