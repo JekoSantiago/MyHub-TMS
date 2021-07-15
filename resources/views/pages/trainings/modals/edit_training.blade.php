@@ -20,7 +20,7 @@
                                     </select>
                                     <label class="invalid-feedback" id="edit_program_training_error">Select a Program.</label>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 opt">
                                     <label for="edit_loc_type">Location Type <span class="text-danger">*</span></label>
                                     <select name="edit_loc_type" id="edit_loc_type" class="form-control select2" data-placeholder="Select Location Type">
                                         <option value="0"></option>

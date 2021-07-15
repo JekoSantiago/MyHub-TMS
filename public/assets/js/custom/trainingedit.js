@@ -46,6 +46,19 @@ $( document ).ready(function() {
             $('#edit_DC').val($("edit_DC option:first").val());
             $('#edit_prov').val($("edit_DC option:first").val());
             $('#edit_store').val($("edit_DC option:first").val());
+            $.ajax({
+                url:WebURL+'/get-locations',
+                type:'GET',
+                dataType: 'text',
+                cache: false,
+                success: function (data) {
+                    $('#edit_location_training').html(data);
+                    // $('#edit_prov).html('<option></option>');
+                },
+                error: function () {
+                    console.log('error');
+                }
+            })
 
         }
 

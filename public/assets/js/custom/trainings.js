@@ -192,18 +192,10 @@ $(document).ready(function ()
             $('#edit_training_ratings').prop('checked',false);
 
         }
-        // if(isOpen == null)
-        // {
-        //     $('#edit_isOpen').prop('checked',false);
-        // }
-        // else
-        // {
-        //     $('#edit_isOpen').prop('checked',true);
-        // }
 
         if (locID > 0)
         {
-            $('#edit_loc_type option:eq(1)').attr('selected', 'selected');
+            $('div.opt select').val('1');
             $('.hub').show();
             $('.storeloc').hide();
 
@@ -226,7 +218,7 @@ $(document).ready(function ()
         }
         else if (storeID > 0)
         {
-            $('#edit_loc_type option:eq(2)').attr('selected', 'selected');
+            $('div.opt select').val('2');
             $('.hub').hide();
             $('.storeloc').show();
 
@@ -280,6 +272,8 @@ $(document).ready(function ()
 
 
     })
+
+
 
     //
     //Show modal new training
@@ -635,8 +629,8 @@ $(document).ready(function ()
                         if(data.num>0)
                         {
                             //EMAIL SENDING
-                            var trainID = data.num;
-                            $.post(WebURL + '/email-create',{trainingID:trainID,action:'create'})
+                            // var trainID = data.num;
+                            // $.post(WebURL + '/email-create',{trainingID:trainID,action:'create'})
                             //
                             swal.fire({
                                 title: 'Success',
