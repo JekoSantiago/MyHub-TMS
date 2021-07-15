@@ -6,11 +6,9 @@ use App\Helper\MyHelper;
 use App\Location;
 use App\Programs;
 use App\Trainings;
-use Illuminate\Contracts\Session\Session as SessionSession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-use Laracasts\Utilities\JavaScript;
 use Laracasts\Utilities\JavaScript\JavaScriptFacade;
 
 class TrainingController extends Controller
