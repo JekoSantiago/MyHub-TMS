@@ -6,6 +6,7 @@ use App\Helper\MyHelper;
 use App\Mail\NotifEmail;
 use App\Programs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
@@ -24,13 +25,16 @@ class ProgramEmailController extends Controller
 
         $update = Programs::completeProgram($params2);
 
+
+
         $num = $update[0]->RETURN;
-        $email = env('RECRUITMENT_EMAIL');
+        $emails = DB::select('sp_RecEmail_Get ?', $params);
 
         if($num > 0)
         {
             $data = Programs::recruitmentNotif($params);
-            Mail::to($email)->send(new NotifEmail($data));
+            foreach($emails as $email)
+            Mail::to($email->Email)->send(new NotifEmail($data));
             $msg = 'Program completed!';
 
         }
