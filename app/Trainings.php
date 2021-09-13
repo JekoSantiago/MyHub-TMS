@@ -59,7 +59,7 @@ class Trainings extends Model
 
     public static function updateRatingsApp($data)
     {
-        return DB::statement('exec sp_TrainingAppRatings_Update ?,?,?,?',$data);
+        return DB::select('exec sp_TrainingAppRatings_Update ?,?,?,?',$data);
     }
 
     public static function getAvailablePrograms($data)
@@ -79,7 +79,7 @@ class Trainings extends Model
 
     public static function updateProgramApp($data)
     {
-        return DB::statement('exec sp_ProgramApp_Update ?,?,?', $data);
+        return DB::select('sp_ProgramApp_Update ?,?,?', $data);
     }
 
     public static function trainingAppInsert($data)

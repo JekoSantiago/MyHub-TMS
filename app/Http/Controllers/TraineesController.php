@@ -6,13 +6,22 @@ use App\Helper\MyHelper;
 use App\Trainees;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class TraineesController extends Controller
 {
     public function getTrainees()
     {
         $applicant = Trainees::getTrainees();
-        return datatables($applicant)->toJson();
+
+        if(Session::get('Employee_ID')!=null)
+        {
+            return datatables($applicant)->toJson();
+        }
+        else
+        {
+            abort(403);
+        }
     }
     public function getTraineesID($id)
     {
@@ -25,7 +34,15 @@ class TraineesController extends Controller
     public function dataTableAppDet(Request $request)
     {
         $data = Trainees::getApplicantDetails($request->Applicant_ID);
-        return datatables($data)->toJson();
+
+        if(Session::get('Employee_ID')!=null)
+        {
+            return datatables($data)->toJson();
+        }
+        else
+        {
+            abort(403);
+        }
     }
 
     public function applicantDetail(Request $request)

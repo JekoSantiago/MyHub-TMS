@@ -1,12 +1,17 @@
 $(document).ready(function ()
 {
+    console.log($('#globalToken').val());
+    var token = $('#globalToken').val();
+
     $('#tbl_trainees').DataTable({
         processing: true,
         serverSide: true,
         scrollX: true,
         ajax      : {
             url: WebURL + '/trainees-table',
-            method: 'GET',
+            method: 'POST',
+            data: {token:token},
+            dataType: 'JSON',
         },
         columns   :[
                 {data:"Position"},

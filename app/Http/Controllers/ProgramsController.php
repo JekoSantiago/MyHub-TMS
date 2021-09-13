@@ -15,8 +15,14 @@ class ProgramsController extends Controller
     public function getPrograms()
     {
       $programs = Programs::getPrograms();
-      return datatables($programs)->toJson();
-    //   dd($programs);
+      if(Session::get('Employee_ID')!=null)
+      {
+        return datatables($programs)->toJson();
+      }
+      else
+      {
+          abort(403);
+      }
     }
 
 
@@ -24,7 +30,6 @@ class ProgramsController extends Controller
     public function showNewProgram()
     {
         $data['parents']=Programs::getPrograms();
-        // DD($data);
         return view ('pages.programs.modals.content.new_program',$data);
     }
 

@@ -12,7 +12,15 @@ class LocationsController extends Controller
     public function getLocations()
     {
       $locations = Location::getLocations();
-      return datatables($locations)->toJson();
+
+      if(Session::get('Employee_ID')!=null)
+      {
+        return datatables($locations)->toJson();
+      }
+      else
+      {
+          abort(403);
+      }
     //   dd($Locations);
     }
 

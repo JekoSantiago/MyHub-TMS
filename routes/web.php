@@ -23,94 +23,94 @@ use Illuminate\Mail\Mailable;
 
 //Index
 Route::any('/','AuthController@index');
-Route::get('/logout','AuthController@logout')->name('logout');
+Route::GET('/logout','AuthController@logout')->name('logout');
 
 
 // Pages
-Route::get('/home','PageController@viewHome')->name('home');
-Route::get('/programs','PageController@Programs')->name('page.programs');
-Route::get('/trainings-applicant','PageController@ApplicantTrainings')->name('page.training.app');
-Route::get('/trainings-employee','PageController@EmployeeTrainings')->name('page.training.emp');
-Route::get('/location','PageController@Locations')->name('page.locations');
-Route::get('/employees','PageController@Employees')->name('page.employees');
-Route::get('/trainees','PageController@Trainees')->name('page.trainees');
+Route::GET('/home','PageController@viewHome')->name('home');
+Route::GET('/programs','PageController@Programs')->name('page.programs');
+Route::GET('/trainings-applicant','PageController@ApplicantTrainings')->name('page.training.app');
+Route::GET('/trainings-employee','PageController@EmployeeTrainings')->name('page.training.emp');
+Route::GET('/location','PageController@Locations')->name('page.locations');
+Route::GET('/employees','PageController@Employees')->name('page.employees');
+Route::GET('/trainees','PageController@Trainees')->name('page.trainees');
 
 //Programs
-Route::get('/programs-table','ProgramsController@getPrograms')->name('programs.table');
-Route::get('/programs-new','ProgramsController@showNewProgram');
-Route::post('/programs-store','ProgramsController@insertNewProgram')->name('programs.insert');
-Route::get('/programs-edit/{id}','ProgramsController@showEditProgram');
-Route::post('/programs-update','ProgramsController@updateProgram')->name('programs.update');
-Route::post('/program-open','ProgramsController@openProgram');
+Route::GET('/programs-table','ProgramsController@GETPrograms')->name('programs.table');
+Route::GET('/programs-new','ProgramsController@showNewProgram');
+Route::POST('/programs-store','ProgramsController@insertNewProgram')->name('programs.insert');
+Route::GET('/programs-edit/{id}','ProgramsController@showEditProgram');
+Route::POST('/programs-update','ProgramsController@updateProgram')->name('programs.update');
+Route::POST('/program-open','ProgramsController@openProgram');
 
 //Locations
-Route::get('/locations-table','LocationsController@getLocations')->name('locations.table');
-Route::get('/locations-new', function () { return view('pages.locations.modals.content.new_location');});
-Route::post('/locations-store','LocationsController@insertLocations');
-Route::get('/locations-edit/{id}','LocationsController@showEditLocation');
-Route::post('/locations-update','LocationsController@updateLocation');
+Route::GET('/locations-table','LocationsController@GETLocations')->name('locations.table');
+Route::GET('/locations-new', function () { return view('pages.locations.modals.content.new_location');});
+Route::POST('/locations-store','LocationsController@insertLocations');
+Route::GET('/locations-edit/{id}','LocationsController@showEditLocation');
+Route::POST('/locations-update','LocationsController@updateLocation');
 
 //Trainings
-Route::any('/trainings-tables','TrainingController@getTrainings');
-Route::get('/trainings-new','TrainingController@showNewTraining');
-Route::post('/trainings-store','TrainingController@insertTraining');
-Route::get('/trainings-edit-emp/{id}','TrainingController@showEditTraining');
-Route::post('/trainings-update','TrainingController@updateTraining');
+Route::any('/trainings-tables','TrainingController@GETTrainings');
+Route::GET('/trainings-new','TrainingController@showNewTraining');
+Route::POST('/trainings-store','TrainingController@insertTraining');
+Route::GET('/trainings-edit-emp/{id}','TrainingController@showEditTraining');
+Route::POST('/trainings-update','TrainingController@updateTraining');
 //Employee Training
 Route::any('/train-employee/{id}','TrainingController@trainEmployee');
-Route::get('/train-employee-tbl1','TrainingController@trainEmpTableOne');
-Route::post('/train-employee-tbl2','TrainingController@trainEmpTableTwo');
-Route::post('/train-emp','TrainingController@insertTrainingEmployee');
-Route::post('/train-del','TrainingController@deleteTrainingEmployee');
-Route::get('/train-emp-ratings','TrainingController@showRatingsEmployee');
-Route::post('/update-ratings-emp','TrainingController@updateRatingsEmployee');
-Route::get('/trainings-edit-emp/{id}','TrainingController@showEditTrainingEmp');
+Route::GET('/train-employee-tbl1','TrainingController@trainEmpTableOne');
+Route::POST('/train-employee-tbl2','TrainingController@trainEmpTableTwo');
+Route::POST('/train-emp','TrainingController@insertTrainingEmployee');
+Route::POST('/train-del','TrainingController@deleteTrainingEmployee');
+Route::GET('/train-emp-ratings','TrainingController@showRatingsEmployee');
+Route::POST('/update-ratings-emp','TrainingController@updateRatingsEmployee');
+Route::GET('/trainings-edit-emp/{id}','TrainingController@showEditTrainingEmp');
 //Applicant Training
 Route::any('/train-applicant/{id}','TrainingController@trainApplicant');
 Route::POST('/train-applicant-tbl','TrainingController@trainAppTable');
-Route::post('/update-ratings-app','TrainingController@updateRatingsApp');
-Route::get('/trainings-program-app/{id}','TrainingController@getProgramApp');
-Route::post('/program-app-tbl','TrainingController@tblProgrammApp');
-Route::get('/trainings-edit-app/{id}','TrainingController@showEditTrainingApp');
-Route::post('/recom-count','TrainingController@recomCount');
-// Route::post('/auto-enroll','TrainingController@getAvailablePrograms');
-Route::post('/insert-program-app','TrainingController@insertProgramApp');
-Route::post('/update-program-app','TrainingController@updateProgramApp');
-Route::post('/train-app','TrainingController@insertTrainingApp' );
-Route::post('/app-del', 'TrainingController@deleteAppTraining');
-Route::post('/app-det','TrainingController@getEnrolledTraining');
-Route::post('/app-fail','TrainingController@updateFailRatings');
-Route::post('/check-rate','TrainingController@checkRatingsCount');
-Route::post('/check-train','TrainingController@checkTrainingDone');
-Route::post('/check-eligable','TrainingController@checkEligableAuto');
-Route::post('/check-ratings','TrainingController@checkRatingApp');
+Route::POST('/update-ratings-app','TrainingController@updateRatingsApp');
+Route::GET('/trainings-program-app/{id}','TrainingController@GETProgramApp');
+Route::POST('/program-app-tbl','TrainingController@tblProgrammApp');
+Route::GET('/trainings-edit-app/{id}','TrainingController@showEditTrainingApp');
+Route::POST('/recom-count','TrainingController@recomCount');
+// Route::POST('/auto-enroll','TrainingController@GETAvailablePrograms');
+Route::POST('/insert-program-app','TrainingController@insertProgramApp');
+Route::POST('/update-program-app','TrainingController@updateProgramApp');
+Route::POST('/train-app','TrainingController@insertTrainingApp' );
+Route::POST('/app-del', 'TrainingController@deleteAppTraining');
+Route::POST('/app-det','TrainingController@GETEnrolledTraining');
+Route::POST('/app-fail','TrainingController@updateFailRatings');
+Route::POST('/check-rate','TrainingController@checkRatingsCount');
+Route::POST('/check-train','TrainingController@checkTrainingDone');
+Route::POST('/check-eligable','TrainingController@checkEligableAuto');
+Route::POST('/check-ratings','TrainingController@checkRatingApp');
 
 //Options
-Route::get('/get-dc','OptionsController@getDC');
-Route::post('/get-prov/{id}','OptionsController@getProv');
-Route::post('/get-store','OptionsController@getStore');
-Route::get('/get-programs','OptionsController@getProgramsOptions');
-Route::get('/get-locations','OptionsController@getLocationsOptions');
-Route::post('/get-sequence','OptionsController@getSeqPrograms');
+Route::GET('/GET-dc','OptionsController@GETDC');
+Route::POST('/GET-prov/{id}','OptionsController@GETProv');
+Route::POST('/GET-store','OptionsController@GETStore');
+Route::GET('/GET-programs','OptionsController@GETProgramsOptions');
+Route::GET('/GET-locations','OptionsController@GETLocationsOptions');
+Route::POST('/GET-sequence','OptionsController@GETSeqPrograms');
 
 //Employees
-Route::get('/employees-table','EmployeesController@getEmployees');
-Route::get('/employee-look/{id}','EmployeesController@getEmployeeDetails');
-Route::get('/employee-det-table','EmployeesController@dataTableEmpDet');
-Route::post('/employee-details-table','EmployeesController@dataTableEmpDet');
+Route::GET('/employees-table','EmployeesController@GETEmployees');
+Route::GET('/employee-look/{id}','EmployeesController@GETEmployeeDetails');
+Route::GET('/employee-det-table','EmployeesController@dataTableEmpDet');
+Route::POST('/employee-details-table','EmployeesController@dataTableEmpDet');
 
 //Trainees
-Route::get('/trainees-table','TraineesController@getTrainees');
-Route::get('/applicant-look/{id}','TraineesController@getTraineesID');
-Route::post('/applicant-details-table','TraineesController@dataTableAppDet');
+Route::POST('/trainees-table','TraineesController@GETTrainees');
+Route::GET('/applicant-look/{id}','TraineesController@GETTraineesID');
+Route::POST('/applicant-details-table','TraineesController@dataTableAppDet');
 
 
 // EMAIL
-Route::post('/email-create','TrainingEmailController@sendEmailNotif');
-Route::post('/recruitment-notif','ProgramEmailController@recruitmentNotif');
+Route::POST('/email-create','TrainingEmailController@sendEmailNotif');
+Route::POST('/recruitment-notif','ProgramEmailController@recruitmentNotif');
 
 
-Route::get('/zxc',function(){
+Route::GET('/zxc',function(){
     DD(Session::all());
 });
 

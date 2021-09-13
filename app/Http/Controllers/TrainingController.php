@@ -15,8 +15,15 @@ class TrainingController extends Controller
 {
     public function getTrainings()
     {
-         $trainings = Trainings::getTrainings();
-        return datatables($trainings)->toJson();
+        $trainings = Trainings::getTrainings();
+        if(Session::get('Employee_ID')!=null)
+        {
+            return datatables($trainings)->toJson();
+        }
+        else
+        {
+            abort(403);
+        }
     }
 
     public function showNewTraining()
@@ -153,14 +160,29 @@ class TrainingController extends Controller
     public function trainEmpTableOne()
     {
         $data = DB::select('sp_vwEmpPosition_Get');
-        return datatables($data)->toJson();
+        if(Session::get('Employee_ID')!=null)
+        {
+            return datatables($data)->toJson();
+        }
+        else
+        {
+            abort(403);
+        }
 
     }
 
     public function trainEmpTableTwo(Request $request)
     {
         $data = Trainings::getTrainingEmp($request->Training_ID);
-        return datatables($data)->toJson();
+
+        if(Session::get('Employee_ID')!=null)
+        {
+            return datatables($data)->toJson();
+        }
+        else
+        {
+            abort(403);
+        }
 
     }
 
@@ -168,7 +190,14 @@ class TrainingController extends Controller
     {
 
         $data = Trainings::getTrainingApp($request->Training_ID);
-        return datatables($data)->toJson();
+        if(Session::get('Employee_ID')!=null)
+        {
+            return datatables($data)->toJson();
+        }
+        else
+        {
+            abort(403);
+        }
 
     }
 
@@ -282,15 +311,10 @@ class TrainingController extends Controller
          $update = Trainings::updateRatingsApp($data);
 
 
-         if ($update == true)
-         {
-             $num = 1;
-             $msg = 'Ratings successfully updated!';
-         }
-         else
-         {
-             $msg = 'Updating error, contact your admin';
-         }
+         $num = $update[0]->RETURN;
+         $msg = $update[0]->Message;
+
+
          $result = array('num' => $num, 'msg' => $msg);
          return $result;
 
@@ -359,8 +383,14 @@ class TrainingController extends Controller
     {
 
         $data = Trainings::getProgramApp($request->Program_ID);
-        return datatables($data)->toJson();
-
+        if(Session::get('Employee_ID')!=null)
+        {
+            return datatables($data)->toJson();
+        }
+        else
+        {
+            abort(403);
+        }
     }
 
     public function insertProgramApp(Request $request)
@@ -399,16 +429,10 @@ class TrainingController extends Controller
         // dd($param);
         $update = Trainings::updateProgramApp($param);
 
-        if ($update == true)
-        {
-            $num = 1;
-            $msg = 'Successfully updated!';
-        }
-        else
-        {
-            $num = 0;
-            $msg = 'Updating failed, contact your administrator';
-        }
+        $num = $update[0]->RETURN;
+        $msg = $update[0]->Message;
+
+
         $result = array('num' => $num, 'msg' => $msg);
         return $result;
     }

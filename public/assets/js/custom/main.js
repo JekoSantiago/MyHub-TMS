@@ -27,7 +27,7 @@ $(document).ready(function() {
 
     $.fn.dataTable.ext.errMode = function ( settings, helpPage, message ) {
         console.log(message);
-        location.reload();
+        //location.reload();
     };
 
 });

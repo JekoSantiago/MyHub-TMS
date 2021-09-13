@@ -12,6 +12,7 @@
                     </a>
                 </li>
 
+
                 @php $checkAccessParams['userAccess'] = Session::get('UserAccess');
                      $checkAccessParams['moduleID'] = env('MODULE_PROGRAMS');
                 @endphp
@@ -74,18 +75,26 @@
                 </li>
                 @endif
 
-                {{-- <li>
-                    <a href="{{ URL::to('/reports') }}">
-                        <i data-feather="bar-chart-2"></i>
-                        <span> Reports </span>
+                <li>
+                    <a href="#sidebarProjects" data-toggle="collapse" aria-expanded="false" >
+                        <i class="mdi mdi-briefcase-check-outline"></i>
+                        <span class="menu-collapsed"> Projects </span>
+                        <span class="menu-arrow"></span>
                     </a>
-                </li> --}}
-                {{-- <li>
-                    <a href="{{ URL::to('/maintenance') }}">
-                        <i data-feather="settings"></i>
-                        <span> Maintenance </span>
-                    </a>
-                </li> --}}
+                    <div class="collapse sidebar-submenu" id="sidebarProjects" style="">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="project-list.html" class="menu-collapsed">List</a>
+                            </li>
+                            <li>
+                                <a href="project-detail.html" class="menu-collapsed">Detail</a>
+                            </li>
+                            <li>
+                                <a href="project-create.html" class="menu-collapsed">Create Project</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
             </ul>
         </div>
         <div class="clearfix"></div>

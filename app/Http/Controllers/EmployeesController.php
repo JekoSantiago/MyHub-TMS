@@ -7,14 +7,22 @@ use App\Helper\MyHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Session;
 use Yajra\DataTables;
 
 class EmployeesController extends Controller
 {
     public function getEmployees()
     {
-         $employees = Employees::getEmployees();
-         return datatables($employees)->toJson();
+        $employees = Employees::getEmployees();
+        if(Session::get('Employee_ID')!=null)
+        {
+            return datatables($employees)->toJson();
+        }
+        else
+        {
+            abort(403);
+        }
     }
 
     public function getEmployeeDetails($id)

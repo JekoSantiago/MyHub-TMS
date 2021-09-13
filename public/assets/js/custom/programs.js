@@ -124,6 +124,7 @@ $(document).ready(function ()
                 if(result.value)
                 {
                     var formdata = $('#form_new_program').serialize();
+                    console.log(formdata);
                     $.post(WebURL + '/programs-store',formdata,function(data){
                         if(data.num>0)
                         {

@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-
+    <input type="hidden" name="_token" id="globalToken" value="{{csrf_token()}}" />
     <div class="row">
         <div class="col-12">
             <div class="card">
