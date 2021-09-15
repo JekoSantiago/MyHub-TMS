@@ -1,14 +1,27 @@
 
 $(document).ready(function ()
 {
+    $('.select2').select2();
+
+    var token = $('#globalToken').val();
     console.log(userID,hrAccess);
     var tbl_programs = $('#tbl_programs').DataTable({
         processing: true,
         serverSide: true,
         scrollX: true,
+        searching: false,
         ajax      : {
             url: WebURL + '/programs-table',
-            method: 'GET',
+            method: 'POST',
+            data: function (data) {
+                var program  = $('#filter_program').val();
+                var parent   = $('#filter_parent').val();
+
+                data.parent  = parent;
+                data.program = program;
+                token        = token;
+            },
+            dataType: 'JSON',
         },
         columns   :[
                 {data: "ParentProgram"},
@@ -55,6 +68,19 @@ $(document).ready(function ()
           }
     });
 
+
+    $('#btn_filter_programs').on('click',function(){
+
+        tbl_programs.draw();
+        $('#modal_filter_programs').modal('hide');
+
+    })
+
+    $('#btn_filter_app_reset').on('click',function(){
+
+        $('#filter_program').val('');
+        $('.select2').val(null).trigger('change');
+    })
 
     if ($.session.get("searchBoxP") != null)
     {
@@ -176,6 +202,7 @@ $(document).ready(function ()
         var seqID = data['Sequence_Program_ID'];
         var progID = parentID;
 
+
         $('.select2').select2();
 
         $('.select2-no-search').select2({
@@ -186,7 +213,8 @@ $(document).ready(function ()
 
         $.ajax({
             url:WebURL+'/get-programs',
-            type:'GET',
+            type:'POST',
+            data:{token:token},
             dataType: 'text',
             cache: false,
             success: function (data) {

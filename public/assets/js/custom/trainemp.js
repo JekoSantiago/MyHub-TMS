@@ -6,6 +6,7 @@ $.ajaxSetup({
 
 $(document).ready(function ()
 {
+    var token = $('#globalToken').val();
 
     //
     // Employees table
@@ -17,7 +18,9 @@ $(document).ready(function ()
         lengthMenu: [[5, 10, 20], [5, 10, 20]],
         ajax      : {
             url: WebURL + '/train-employee-tbl1',
-            method: 'GET',
+            method: 'POST',
+            data: {token:token},
+            dataType: 'JSON',
         },
         language: {
             emptyTable: 'No data available.',

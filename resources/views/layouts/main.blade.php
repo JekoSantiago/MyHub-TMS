@@ -14,7 +14,7 @@
 
 <body data-layout='{"sidebar": {"size": "condensed"}}' @yield('body-extra')>
     <div id="wrapper">
-
+        <input type="hidden" name="_token" id="globalToken" value="{{csrf_token()}}" />
         @include('layouts.components.topbar')
         @include('layouts.components.left_sidebar')
 

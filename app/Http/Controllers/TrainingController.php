@@ -13,9 +13,22 @@ use Laracasts\Utilities\JavaScript\JavaScriptFacade;
 
 class TrainingController extends Controller
 {
-    public function getTrainings()
+    public function getTrainings(Request $request)
     {
-        $trainings = Trainings::getTrainings();
+        dd($request ->program);
+        $param = [
+            0,
+            $request -> training,
+            '',
+            ($request -> traindate) ? : '1900-01-01',
+            0,
+            $request -> location,
+            0,
+            $request -> program
+
+        ];
+
+        $trainings = Trainings::getTrainings($param);
         if(Session::get('Employee_ID')!=null)
         {
             return datatables($trainings)->toJson();
@@ -28,7 +41,7 @@ class TrainingController extends Controller
 
     public function showNewTraining()
     {
-        $data['programs']=Programs::getPrograms();
+        $data['programs']=Programs::getPrograms([-1,'',0]);
         $data1['locations']=Location::getLocations();
 
         // DD($data1);

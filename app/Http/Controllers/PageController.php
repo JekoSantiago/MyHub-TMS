@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helper\MyHelper;
+use App\Programs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Laracasts\Utilities\JavaScript\JavaScriptFacade;
@@ -22,6 +23,8 @@ class PageController extends Controller
 
         $data['checkAccessParams']['moduleID']   = env('MODULE_TRAIN_APPLICANTS');
         $data['checkAccessParams']['userAccess'] = Session::get('UserAccess');
+        $data['parents']=Programs::getPrograms([-1,'',0]);
+
 
         if(!Session::has('Employee_ID') || !MyHelper::checkUserAccess($data['checkAccessParams'],env('APP_ACTION_ALL'))):
             return  redirect('/error/401');
@@ -35,6 +38,8 @@ class PageController extends Controller
         $data['title'] = 'Employees Trainings';
         $data['checkAccessParams']['moduleID']   = env('MODULE_TRAIN_EMPLOYEES');
         $data['checkAccessParams']['userAccess'] = Session::get('UserAccess');
+        $data['parents']=Programs::getPrograms([-1,'',0]);
+
         if(!Session::has('Employee_ID') || !MyHelper::checkUserAccess($data['checkAccessParams'],env('APP_ACTION_ALL'))):
             return  redirect('/error/401');
         endif;
@@ -46,6 +51,7 @@ class PageController extends Controller
         $data['title'] = 'Programs';
         $data['checkAccessParams']['moduleID']   = env('MODULE_PROGRAMS');
         $data['checkAccessParams']['userAccess'] = Session::get('UserAccess');
+        $data['parents']=Programs::getPrograms([-1,'',0]);
 
         JavaScriptFacade::put([
             'userID' =>  MyHelper::decrypt(Session::get('Employee_ID')),

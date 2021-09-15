@@ -39,7 +39,7 @@ class OptionsController extends Controller
 
     public function getProgramsOptions()
     {
-      $data = Programs::getPrograms();
+      $data = Programs::getPrograms([-1,'',0]);
       $output = '<option></option>';
 
         foreach($data as $prog) :

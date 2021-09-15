@@ -33,6 +33,9 @@
                             <div class="text-sm-left">
                                 <button type="button" data-toggle="modal" data-target="#modal_new_training" class="btn btn-danger waves-effect waves-light mb-2 mr-1"><i class="mdi mdi-plus-circle mr-1"></i>Create a new Training</button>
                             </div>
+                            <div class="text-sm-right">
+                                <button type="button" class="btn btn-danger waves-effect waves-light mb-2 mr-1" data-toggle="modal" data-target="#modal_filter_trainings"><i class="mdi mdi-filter-menu"></i></button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -59,6 +62,7 @@
 </div>
 @include('pages.trainings.modals.new_training')
 @include('pages.trainings.modals.edit_training')
+@include('pages.trainings.modals.filter')
 @endsection
 @section('js')
 <script src="{{asset('assets/js/custom/trainings.js')}}"></script>

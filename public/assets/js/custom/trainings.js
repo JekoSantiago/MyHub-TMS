@@ -3,6 +3,12 @@ $(document).ready(function ()
     //
     //Trainings datatable Employee
     //
+
+    $('.select2').select2();
+
+
+    var token = $('#globalToken').val();
+
     var tbl_trainings_emp = $('#tbl_trainings_emp').DataTable({
         autoWidth: false,
         order: [[3,"asc"]],
@@ -12,7 +18,20 @@ $(document).ready(function ()
         widthChange: true,
         ajax      : {
             url: WebURL + '/trainings-tables',
-            method: 'GET',
+            method: 'POST',
+            data: function (data) {
+                var program  = $('#filter_parent').val();
+                var training   = $('#filter_training').val();
+                var location  = $('#filter_location').val();
+                var traindate  = $('#filter_tdate').val();
+
+                data.program  = program;
+                data.training = training;
+                data.location = location;
+                data.traindate = traindate;
+                token        = token;
+            },
+            dataType: 'JSON',
         },
         columns   :[
                 {data:"Program"},
@@ -45,6 +64,21 @@ $(document).ready(function ()
         },
     });
 
+    $('#btn_filter_trainings').on('click',function(){
+
+        tbl_trainings_emp.draw();
+        tbl_trainings_app.draw();
+        $('#modal_filter_trainings').modal('hide');
+
+    })
+
+    $('#btn_filter_app_reset').on('click',function(){
+
+        $('#filter_training').val('');
+        $('#filter_location').val('');
+        $('#filter_tdate').val('');
+        $('.select2').val(null).trigger('change');
+    })
 
 
     //
@@ -70,7 +104,20 @@ $(document).ready(function ()
         widthChange: true,
         ajax      : {
             url: WebURL + '/trainings-tables',
-            method: 'GET',
+            method: 'POST',
+            data: function (data) {
+                var program  = $('#filter_parent').val();
+                var training   = $('#filter_training').val();
+                var location  = $('#filter_location').val();
+                var traindate  = $('#filter_tdate').val();
+
+                data.program  = program;
+                data.training = training;
+                data.location = location;
+                data.traindate = traindate;
+                token        = token;
+            },
+            dataType: 'JSON',
         },
         columns   :[
                 {data:"Program",render:function(data,type,row){
@@ -154,7 +201,8 @@ $(document).ready(function ()
 
         $.ajax({
             url:WebURL+'/get-programs',
-            type:'GET',
+            type:'POST',
+            data:{token:token},
             dataType: 'text',
             cache: false,
             success: function (data) {

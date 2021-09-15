@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\DB;
 
 class Trainees extends Model
 {
-    public static function getTrainees()
+    public static function getTrainees($data)
     {
-        return DB::select('sp_Applicant_get');
+        return DB::select('sp_Applicant_get ?,?,?,?,?', $data);
     }
 
     public static function getTraineesID($id)

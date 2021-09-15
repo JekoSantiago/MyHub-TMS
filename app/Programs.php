@@ -16,9 +16,9 @@ class Programs extends Model
         return DB::select('sp_Program_Get ?' , [$id]);
     }
 
-    public static function getPrograms()
+    public static function getPrograms($data)
     {
-      return DB::select('sp_Program_Get');
+      return DB::select('sp_Program_Get ?,?,?' , $data);
     }
 
     public static function insertProgram($data)

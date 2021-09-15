@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\DB;
 
 class Trainings extends Model
 {
-    public static function getTrainings()
+    public static function getTrainings($data)
     {
-        return DB::select('sp_Training_get');
+        return DB::select('sp_Training_get ?,?,?,?,?,?,?,?' , $data);
     }
     public static function getTrainingsEdit($data)
     {

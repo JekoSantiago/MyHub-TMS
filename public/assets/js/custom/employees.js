@@ -1,12 +1,15 @@
 $(document).ready(function ()
 {
+    var token = $('#globalToken').val();
+
     $('#tbl_employees').DataTable({
         processing: true,
         serverSide: true,
         ajax      : {
             url: WebURL + '/employees-table',
-            method: 'GET',
-            dataType: 'json'
+            method: 'POST',
+            data: {token:token},
+            dataType: 'JSON',
         },
         columns   :[
                 {data:"EmployeeNo", render:function(data,type,row)

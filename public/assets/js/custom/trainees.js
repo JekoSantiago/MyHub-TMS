@@ -3,14 +3,26 @@ $(document).ready(function ()
     console.log($('#globalToken').val());
     var token = $('#globalToken').val();
 
-    $('#tbl_trainees').DataTable({
+    var tbl_trainees = $('#tbl_trainees').DataTable({
         processing: true,
         serverSide: true,
         scrollX: true,
+        searching: false,
         ajax      : {
             url: WebURL + '/trainees-table',
             method: 'POST',
-            data: {token:token},
+            data: function (data) {
+                var firstName  = $('#filter_fname').val();
+                var middleName = $('#filter_mname').val();
+                var lastName   = $('#filter_lname').val();
+                var position   = $('#filter_pos').val();
+
+                data.firstName  = firstName;
+                data.middleName = middleName;
+                data.lastName   = lastName;
+                data.position   = position;
+                token           = token;
+            },
             dataType: 'JSON',
         },
         columns   :[
@@ -41,6 +53,21 @@ $(document).ready(function ()
         },
     });
 
+
+    $('#btn_filter_applicants').on('click',function(){
+
+        tbl_trainees.draw();
+        $('#modal_filter_applicants').modal('hide');
+
+    })
+
+    $('#btn_filter_app_reset').on('click',function(){
+
+        $('#filter_fname').val('');
+        $('#filter_mname').val('');
+        $('#filter_lname').val('');
+        $('#filter_pos').val('');
+    })
 
 
 ///////////////

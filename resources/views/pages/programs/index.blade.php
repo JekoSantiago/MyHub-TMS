@@ -33,7 +33,9 @@
                                 <div class="text-sm-left">
                                     <button type="button" data-toggle="modal" data-target="#modal_new_program" class="btn btn-danger waves-effect waves-light mb-2 mr-1"><i class="mdi mdi-plus-circle mr-1"></i>Create a new Program</button>
                                 </div>
-
+                                <div class="text-sm-right">
+                                    <button type="button" class="btn btn-danger waves-effect waves-light mb-2 mr-1" data-toggle="modal" data-target="#modal_filter_programs"><i class="mdi mdi-filter-menu"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -56,6 +58,7 @@
 </div>
 @include('pages.programs.modals.new_program')
 @include('pages.programs.modals.edit_program')
+@include('pages.programs.modals.filter')
 
 @endsection
 @section('js')

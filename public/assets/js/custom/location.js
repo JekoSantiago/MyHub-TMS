@@ -1,12 +1,16 @@
 $(document).ready(function ()
 {
+    var token = $('#globalToken').val();
+
     //Data table Locations
     var tbl_location = $('#tbl_locations').DataTable({
         processing: true,
         serverSide: true,
         ajax      : {
             url: WebURL + '/locations-table',
-            method: 'GET',
+            method: 'POST',
+            data: {token:token},
+            dataType: 'JSON',
         },
         columns   :[
             {data:"Location",render:function(data, type, row){

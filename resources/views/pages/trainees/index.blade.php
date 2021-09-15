@@ -30,6 +30,11 @@
                     <div class="row mb-2">
                         <div class="col-md-12">
                             <div class="d-flex flex-wrap justify-content-between">
+                                <div class="text-sm-left">
+                                </div>
+                                <div class="text-sm-right">
+                                    <button type="button" class="btn btn-danger waves-effect waves-light mb-2 mr-1" data-toggle="modal" data-target="#modal_filter_applicants"><i class="mdi mdi-filter-menu"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -57,6 +62,7 @@
 
 
 </div>
+@include('pages.trainees.modals.filter')
 @endsection
 @section('js')
 <script src="{{asset('assets/js/custom/trainees.js')}}"></script>

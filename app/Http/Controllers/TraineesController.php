@@ -10,9 +10,17 @@ use Illuminate\Support\Facades\Session;
 
 class TraineesController extends Controller
 {
-    public function getTrainees()
+    public function getTrainees(Request $request)
     {
-        $applicant = Trainees::getTrainees();
+        $param = [
+            0,
+            $request -> position,
+            $request -> lastName,
+            $request -> firstName,
+            $request -> middleName
+        ];
+
+        $applicant = Trainees::getTrainees($param);
 
         if(Session::get('Employee_ID')!=null)
         {

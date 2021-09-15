@@ -12,24 +12,30 @@ use Illuminate\Support\Facades\Session;
 class ProgramsController extends Controller
 {
 
-    public function getPrograms()
+    public function getPrograms(Request $request)
     {
-      $programs = Programs::getPrograms();
-      if(Session::get('Employee_ID')!=null)
-      {
+        $param = [
+            0,
+            $request -> program,
+            $request -> parent
+        ];
+
+        $programs = Programs::getPrograms($param);
+        if(Session::get('Employee_ID')!=null)
+        {
         return datatables($programs)->toJson();
-      }
-      else
-      {
-          abort(403);
-      }
+        }
+        else
+        {
+            abort(403);
+        }
     }
 
 
 
     public function showNewProgram()
     {
-        $data['parents']=Programs::getPrograms();
+        $data['parents']=Programs::getPrograms([-1,'',0]);
         return view ('pages.programs.modals.content.new_program',$data);
     }
 
