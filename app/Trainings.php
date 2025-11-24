@@ -117,5 +117,10 @@ class Trainings extends Model
         return DB::statement('exec sp_ProgramApp_Delete ?', $data);
     }
 
+    public static function calendarViewApp($data)
+    {
+        return DB::select('sp_CalendarViewApp_Get ?,?', $data);
+    }
+
 
 }

@@ -65,6 +65,7 @@
                             <th>Last Name</th>
                             <th>First Name</th>
                             <th>Middle Name</th>
+                            <th>Position</th>
                             <th>Gender</th>
                             <th width='70px'>Birth Date</th>
                             <th>Home Address</th>

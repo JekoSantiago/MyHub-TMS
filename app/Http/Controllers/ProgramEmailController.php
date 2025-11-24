@@ -32,11 +32,14 @@ class ProgramEmailController extends Controller
 
         if($num > 0)
         {
-            $data = Programs::recruitmentNotif($params);
-            foreach($emails as $email)
-            Mail::to($email->Email)->send(new NotifEmail($data));
-            $msg = 'Program completed!';
+            if(env('ALLOWED_EMAIL') == 1 )
+            {
+                $data = Programs::recruitmentNotif($params);
+                foreach($emails as $email)
+                Mail::to($email->Email)->send(new NotifEmail($data));
+            }
 
+            $msg = 'Program completed!';
         }
         else
         {

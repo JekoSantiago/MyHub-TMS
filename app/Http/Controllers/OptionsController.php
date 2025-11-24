@@ -63,7 +63,6 @@ class OptionsController extends Controller
     public function getStore(Request $request)
     {
 
-        // dd($request);
         $param = [
             $request ->dc,
             $request ->prov,
@@ -85,8 +84,8 @@ class OptionsController extends Controller
     {
         $progID = $request->progID;
 
-        $seqID = ($progID == env('SCT')) ? env('SLT') : (($progID == env('SLT')) ? env('ACT') : (($progID == env('ACT')) ? env('AMT') : -1));
-        // dd($progID,$seqID);
+        $seqID = ($progID == env('SCT')) ? env('SHLT') : (($progID == env('SHLT')) ? env('SLT') : (($progID == env('SLT')) ? env('ACT') : (($progID == env('ACT')) ? env('AMT') : -1)));
+
         if ($seqID > 0)
         {
             $param = [

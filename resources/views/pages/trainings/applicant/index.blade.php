@@ -1,4 +1,7 @@
 @extends('layouts.main')
+@section('css')
+<link href="{{asset('assets/libs/calendar/main.min.css')}} " rel="stylesheet" type="text/css"/>
+@endsection
 @section('content')
 
 {{-- <div id="preloader">
@@ -24,36 +27,38 @@
     </div>
 
     <div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="row mb-2">
-                    <div class="col-md-12">
-                        <div class="d-flex flex-wrap justify-content-between">
-                            <div class="text-sm-left">
-                                <button type="button" data-toggle="modal" data-target="#modal_new_training" class="btn btn-danger waves-effect waves-light mb-2 mr-1"><i class="mdi mdi-plus-circle mr-1"></i>Create a new Training</button>
-                            </div>
-                            <div class="text-sm-right">
-                                <button type="button" class="btn btn-danger waves-effect waves-light mb-2 mr-1" data-toggle="modal" data-target="#modal_filter_trainings"><i class="mdi mdi-filter-menu"></i></button>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row mb-2">
+                        <div class="col-md-12">
+                            <div class="d-flex flex-wrap justify-content-between">
+                                <div class="text-sm-left">
+                                    <button type="button" data-toggle="modal" data-target="#modal_new_training" class="btn btn-danger waves-effect waves-light mb-2 mr-1"><i class="mdi mdi-plus-circle mr-1"></i>Create a new Training</button>
+                                </div>
+                                <div class="text-sm-right">
+                                    {{-- <button type="button" class="btn btn-danger waves-effect waves-light mb-2 mr-1" data-toggle="modal" data-target="#modal_calendar_view"><i class="mdi mdi-calendar-month-outline"></i></button> --}}
+                                    <button type="button" class="btn btn-danger waves-effect waves-light mb-2 mr-1" data-toggle="modal" data-target="#modal_filter_trainings"><i class="mdi mdi-filter-menu"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <table id="tbl_trainings_app" class="table table-centered w-100 tbl_training" >
+                        <thead>
+                            <tr>
+                                <th width='160px'>Program</th>
+                                <th>Training</th>
+                                <th width='70px'>Date</th>
+                                <th>Location</th>
+                                <th width="60px">Capacity</th>
+                                <th width="60px">No. of Hours</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
                 </div>
-                <table id="tbl_trainings_app" class="table table-centered w-100 tbl_training" >
-                    <thead>
-                        <tr>
-                            <th width='160px'>Program</th>
-                            <th>Training</th>
-                            <th width='70px'>Date</th>
-                            <th>Location</th>
-                            <th width="60px">Capacity</th>
-                            <th width="60px">No. of Hours</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
@@ -63,9 +68,11 @@
 @include('pages.trainings.modals.new_training')
 @include('pages.trainings.modals.edit_training')
 @include('pages.trainings.modals.filter')
+@include('pages.trainings.applicant.modals.cview')
 @endsection
 @section('js')
 <script src="{{asset('assets/js/custom/trainings.js')}}"></script>
+<script src="{{asset('assets/js/custom/cview.js')}}"></script>
 <script src="{{asset('assets/js/custom/trainingedit.js')}}"></script>
-
+<script src="{{asset('assets/libs/calendar/main.min.js')}}"></script>
 @endsection

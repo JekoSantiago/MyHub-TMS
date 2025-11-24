@@ -13,8 +13,18 @@ class PageController extends Controller
 
     public function viewHome()
     {
+
         $data['title'] = "Home";
-        return view('pages.home.index',$data);
+
+
+        if(Myhelper::checkSession())
+        {
+            return view('pages.home.index',$data);
+        }
+        else
+        {
+            return redirect()->away(env('MYHUB_URL'));
+        }
     }
 
     public function ApplicantTrainings()
@@ -25,11 +35,18 @@ class PageController extends Controller
         $data['checkAccessParams']['userAccess'] = Session::get('UserAccess');
         $data['parents']=Programs::getPrograms([-1,'',0]);
 
+        if(Myhelper::checkSession())
+        {
+            if(!Session::has('Employee_ID') && !MyHelper::checkUserAccess($data['checkAccessParams'],env('APP_ACTION_ALL'))):
+                return  redirect('/error/401');
+            endif;
+            return view ('pages.trainings.applicant.index',$data);
+        }
+        else
+        {
+            return redirect()->away(env('MYHUB_URL'));
+        }
 
-        if(!Session::has('Employee_ID') || !MyHelper::checkUserAccess($data['checkAccessParams'],env('APP_ACTION_ALL'))):
-            return  redirect('/error/401');
-        endif;
-        return view ('pages.trainings.applicant.index',$data);
     }
 
 
@@ -40,10 +57,20 @@ class PageController extends Controller
         $data['checkAccessParams']['userAccess'] = Session::get('UserAccess');
         $data['parents']=Programs::getPrograms([-1,'',0]);
 
-        if(!Session::has('Employee_ID') || !MyHelper::checkUserAccess($data['checkAccessParams'],env('APP_ACTION_ALL'))):
-            return  redirect('/error/401');
-        endif;
-        return view ('pages.trainings.employee.index',$data);
+
+        if(Myhelper::checkSession())
+        {
+
+            if(!Session::has('Employee_ID') && !MyHelper::checkUserAccess($data['checkAccessParams'],env('APP_ACTION_ALL'))):
+                return  redirect('/error/401');
+            endif;
+
+            return view ('pages.trainings.employee.index',$data);
+        }
+        else
+        {
+            return redirect()->away(env('MYHUB_URL'));
+        }
     }
 
     public function Programs()
@@ -58,10 +85,19 @@ class PageController extends Controller
             'hrAccess' => env('HR_MANAGER_ID')
         ]);
 
-        if(!Session::has('Employee_ID') || !MyHelper::checkUserAccess($data['checkAccessParams'],env('APP_ACTION_ALL'))):
-            return  redirect('/error/401');
-        endif;
-        return view ('pages.programs.index',$data);
+
+        if(Myhelper::checkSession())
+        {
+            if(!Session::has('Employee_ID') && !MyHelper::checkUserAccess($data['checkAccessParams'],env('APP_ACTION_ALL'))):
+                return  redirect('/error/401');
+            endif;
+
+            return view ('pages.programs.index',$data);
+        }
+        else
+        {
+            return redirect()->away(env('MYHUB_URL'));
+        }
     }
 
     public function Locations()
@@ -69,10 +105,20 @@ class PageController extends Controller
         $data['title'] = 'Locations';
         $data['checkAccessParams']['moduleID']   = env('MODULE_LOCATIONS');
         $data['checkAccessParams']['userAccess'] = Session::get('UserAccess');
-        if(!Session::has('Employee_ID') || !MyHelper::checkUserAccess($data['checkAccessParams'],env('APP_ACTION_ALL'))):
-            return  redirect('/error/401');
-        endif;
-        return view ('pages.locations.index',$data);
+
+
+        if(Myhelper::checkSession())
+        {
+            if(!Session::has('Employee_ID') && !MyHelper::checkUserAccess($data['checkAccessParams'],env('APP_ACTION_ALL'))):
+                return  redirect('/error/401');
+            endif;
+
+            return view ('pages.locations.index',$data);
+        }
+        else
+        {
+            return redirect()->away(env('MYHUB_URL'));
+        }
     }
 
     public function Employees()
@@ -80,10 +126,19 @@ class PageController extends Controller
         $data['title'] = 'Employees';
         $data['checkAccessParams']['moduleID']   = env('MODULE_EMPLOYEES');
         $data['checkAccessParams']['userAccess'] = Session::get('UserAccess');
-        if(!Session::has('Employee_ID') || !MyHelper::checkUserAccess($data['checkAccessParams'],env('APP_ACTION_ALL'))):
-            return  redirect('/error/401');
-        endif;
-        return view ('pages.employees.index',$data);
+
+
+        if(Myhelper::checkSession())
+        {
+            if(!Session::has('Employee_ID') && !MyHelper::checkUserAccess($data['checkAccessParams'],env('APP_ACTION_ALL'))):
+                return  redirect('/error/401');
+            endif;
+            return view ('pages.employees.index',$data);
+        }
+        else
+        {
+            return redirect()->away(env('MYHUB_URL'));
+        }
     }
 
     public function Trainees()
@@ -91,10 +146,19 @@ class PageController extends Controller
         $data['title'] = 'Trainees';
         $data['checkAccessParams']['moduleID']   = env('MODULE_APPLICANTS');
         $data['checkAccessParams']['userAccess'] = Session::get('UserAccess');
-        if(!Session::has('Employee_ID') || !MyHelper::checkUserAccess($data['checkAccessParams'],env('APP_ACTION_ALL'))):
-            return  redirect('/error/401');
-        endif;
-        return view ('pages.trainees.index',$data);
+
+        if(Myhelper::checkSession())
+        {
+            if(!Session::has('Employee_ID') && !MyHelper::checkUserAccess($data['checkAccessParams'],env('APP_ACTION_ALL'))):
+                return  redirect('/error/401');
+            endif;
+
+            return view ('pages.trainees.index',$data);
+        }
+        else
+        {
+            return redirect()->away(env('MYHUB_URL'));
+        }
     }
 
 

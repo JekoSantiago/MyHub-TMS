@@ -15,12 +15,11 @@ class TrainingController extends Controller
 {
     public function getTrainings(Request $request)
     {
-        dd($request ->program);
         $param = [
             0,
             $request -> training,
             '',
-            ($request -> traindate) ? : '1900-01-01',
+            date('Y-m-d',strtotime(($request -> traindate) ? : '1900-01-01')),
             0,
             $request -> location,
             0,
@@ -44,17 +43,15 @@ class TrainingController extends Controller
         $data['programs']=Programs::getPrograms([-1,'',0]);
         $data1['locations']=Location::getLocations();
 
-        // DD($data1);
         return view ('pages.trainings.modals.content.new_training',$data,$data1);
     }
 
     public function insertTraining(Request $request)
     {
-        // dd($request);
         $data = array(
             $request -> new_training,
             $request -> new_training_description,
-            $request -> new_training_date,
+            date('Y-m-d',strtotime($request -> new_training_date)),
             $request -> new_location_training,
             $request -> new_DC,
             $request -> new_store,
@@ -68,7 +65,6 @@ class TrainingController extends Controller
 
         $insert = Trainings::insertTraining($data);
         $num = $insert[0]->RETURN;
-        // dd($num);
 
         if ($num > 0) :
             $msg = 'Training successfully saved!';
@@ -76,7 +72,6 @@ class TrainingController extends Controller
         else :
             $msg = Myhelper::errorMessages($num);
         endif;
-        // TrainingEmailController::sendEmailNotif($num,'create');
         $result = array('num' => $num, 'msg' => $msg);
         return $result;
 
@@ -112,7 +107,7 @@ class TrainingController extends Controller
             $request->edit_training_id,
             $request->edit_training,
             $request->edit_training_description,
-            $request->edit_training_date,
+            date('Y-m-d',strtotime($request->edit_training_date)),
             $request->edit_location_training,
             $request->edit_DC,
             $request->edit_store,
@@ -143,30 +138,47 @@ class TrainingController extends Controller
 
     public function trainEmployee($id)
     {
-        $training = Trainings::getTrainingsEdit($id);
-        $data['title'] = 'Employees Training';
-        return view('pages.trainings.employee.tabs.train_employee',$data)
-        ->with('training',$training);
+        if(Myhelper::checkSession())
+        {
+            $training = Trainings::getTrainingsEdit($id);
+            $data['title'] = 'Employees Training';
+            return view('pages.trainings.employee.tabs.train_employee',$data)
+            ->with('training',$training);
+        }
+        else
+        {
+            return redirect()->away(env('MYHUB_URL'));
+        }
+
 
     }
 
     public function trainApplicant($id)
     {
-        JavaScriptFacade::put([
-            'SC_ID' => env('SC_ID'),
-            'SL_ID' => env('SL_ID'),
-            'AC_ID' => env('AC_ID'),
-            'AM_ID' => env('AM_ID'),
-            'SCT' => env('SCT'),
-            'SLT' => env('SLT'),
-            'ACT' => env('ACT'),
-            'AMT' => env('AMT'),
-            'PG' => env('Passing')
-        ]);
-        $training = Trainings::getTrainingsEdit($id);
-        $data['title'] = 'Applicants Training';
-        return view('pages.trainings.applicant.tabs.train_applicant',$data)
-        ->with('training',$training);
+
+        if(Myhelper::checkSession())
+        {
+            JavaScriptFacade::put([
+                'SC_ID' => env('SC_ID'),
+                'SL_ID' => env('SL_ID'),
+                'AC_ID' => env('AC_ID'),
+                'AM_ID' => env('AM_ID'),
+                'SCT' => env('SCT'),
+                'SLT' => env('SLT'),
+                'ACT' => env('ACT'),
+                'AMT' => env('AMT'),
+                'PG' => env('Passing')
+            ]);
+            $training = Trainings::getTrainingsEdit($id);
+            $data['title'] = 'Applicants Training';
+            return view('pages.trainings.applicant.tabs.train_applicant',$data)
+            ->with('training',$training);
+
+        }
+        else
+        {
+            return redirect()->away(env('MYHUB_URL'));
+        }
     }
 
 
@@ -321,6 +333,8 @@ class TrainingController extends Controller
             $request->remarks
         );
 
+        dd($data);
+
          $update = Trainings::updateRatingsApp($data);
 
 
@@ -372,25 +386,33 @@ class TrainingController extends Controller
     public function getProgramApp($id)
     {
 
-        JavaScriptFacade::put([
-            'SC_ID' => env('SC_ID'),
-            'SL_ID' => env('SL_ID'),
-            'AC_ID' => env('AC_ID'),
-            'AM_ID' => env('AM_ID'),
-            'SCT' => env('SCT'),
-            'SLT' => env('SLT'),
-            'ACT' => env('ACT'),
-            'AMT' => env('AMT'),
-            'PG' => env('Passing')
-        ]);
-        $datas = Programs::getProgramEdit($id);
-        $data['title'] = 'Program Applicants';
-        $recom = DB::select('sp_Recommendation_get');
-        $count = Programs::programAppCount($id);
-        $countN = Programs::programAppCountNull($id);
-        $HaveR = ($count[0]->total - $countN[0]->total);
-        return view('pages.trainings.applicant.tabs.program_app',compact('datas','recom','count','countN','HaveR'),$data);
-    }
+        if(Myhelper::checkSession())
+        {
+            JavaScriptFacade::put([
+                'SC_ID' => env('SC_ID'),
+                'SL_ID' => env('SL_ID'),
+                'AC_ID' => env('AC_ID'),
+                'AM_ID' => env('AM_ID'),
+                'SCT' => env('SCT'),
+                'SLT' => env('SLT'),
+                'ACT' => env('ACT'),
+                'AMT' => env('AMT'),
+                'PG' => env('Passing')
+            ]);
+            $datas = Programs::getProgramEdit($id);
+            $data['title'] = 'Program Applicants';
+            $recom = DB::select('sp_Recommendation_get');
+            $count = Programs::programAppCount($id);
+            $countN = Programs::programAppCountNull($id);
+            $HaveR = ($count[0]->total - $countN[0]->total);
+            return view('pages.trainings.applicant.tabs.program_app',compact('datas','recom','count','countN','HaveR'),$data);
+
+        }
+        else
+        {
+            return redirect()->away(env('MYHUB_URL'));
+        }
+}
 
     public function tblProgrammApp(Request $request)
     {
@@ -470,7 +492,7 @@ class TrainingController extends Controller
         if ($num > 0) :
             $msg = 'Successfully enrolled to the next program';
         else :
-            $msg = $insert[0]->Message;
+            $msg = Myhelper::errorMessages($num);
         endif;
 
         $result = array('num' => $num, 'msg' => $msg);
@@ -552,8 +574,12 @@ class TrainingController extends Controller
         $depID = $request -> DeptPosition_ID;
         $parentID = $request -> Parent_Program_ID;
 
-        // dd($depID,$parentID);
+
         if($parentID == env('SCT'))
+        {
+            $eligable = ($depID == env('AM_ID')) ? 1 : (($depID == env('AC_ID')) ? 1 : (($depID == env('SL_ID')) ? 1 : (($depID == env('SHL_ID')) ? 1 : 0)));
+        }
+        elseif ($parentID == env('SHLT'))
         {
             $eligable = ($depID == env('AM_ID')) ? 1 : (($depID == env('AC_ID')) ? 1 : (($depID == env('SL_ID')) ? 1 : 0));
         }
@@ -606,6 +632,17 @@ class TrainingController extends Controller
         ];
 
         return $data;
+    }
+
+    public function failAuto(Request $request)
+    {
+        $param2 = [
+            $request -> ProgramApp_ID,
+        ];
+
+        Trainings::deleteProgramApp($param2);
+
+        return 1;
     }
 
 }

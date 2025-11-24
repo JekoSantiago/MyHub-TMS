@@ -4,6 +4,8 @@ namespace App\Helper;
 
 use Carbon\Carbon;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Session;
+
 class MyHelper
 {
     public static function errorMessages($return)
@@ -326,13 +328,9 @@ class MyHelper
        return $time;
     }
 
-    public static function check5pm()
+    public static function checkSession()
     {
-        $now = Carbon::now();
-
-        $start = Carbon::createFromTimeString('05:00');
-        $end = Carbon::createFromTimeString('17:00');
-        if($now->between($start, $end))
+        if(Session::has('UserAccess'))
         {
             return true;
         }

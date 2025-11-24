@@ -90,7 +90,6 @@ class ProgramsController extends Controller
             null
         );
 
-        // dd($data);
          $update = Programs::updateProgram($data);
          $num = $update[0]->RETURN;
          if ($num >= 0)

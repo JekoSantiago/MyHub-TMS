@@ -57,6 +57,7 @@ $(document).ready(function ()
             }},
             {data: "FirstName"},
             {data: "MiddleName" },
+            {data: "Position" },
             {data: "Gender" },
             {data: "Birthdate" },
             {data: "HomeAdd" },
@@ -79,10 +80,10 @@ $(document).ready(function ()
             processing:'<div class="text-center"><div class="spinner spinner-border"></div></div>'
         },
         createdRow: function (row, data, index){
-            if(data.Ratings >= 76) {
+            if(data.Ratings >= parseInt(PG)) {
                 $(row).addClass('table-success');
             }
-            else if(data.Ratings < 76 && data.Status == 'FAILED') {
+            else if(data.Ratings < parseInt(PG) && data.Status == 'FAILED') {
                 $(row).addClass('table-warning');
             }
         },
@@ -154,6 +155,7 @@ $(document).ready(function ()
         }},
         {data: "FirstName" },
         {data: "MiddleName" },
+        {data: "Position" },
         {data: "Gender" },
         {data: "Birthdate" },
         {data: "HomeAdd" },
@@ -178,7 +180,7 @@ $(document).ready(function ()
         processing:'<div class="text-center"><div class="spinner spinner-border"></div></div>'
     },
     createdRow: function (row, data, index){
-        if(data.AveRatings >= 76 && data.InsertDate != null) {
+        if(data.AveRatings >= parseInt(PG) && data.InsertDate != null) {
             $(row).addClass('table-success');
         }
 
@@ -187,7 +189,7 @@ $(document).ready(function ()
             $(row).addClass('table-danger');
         }
 
-        if(data.Recommendation_ID == 6 && data.AveRatings < 76)
+        if(data.Recommendation_ID == 6 && data.AveRatings < parseInt(PG))
         {
             console.log('deleted')
             var delID
@@ -199,7 +201,7 @@ $(document).ready(function ()
             tbl_app_prog.ajax.reload( null, false );
         }
 
-        if(data.Recommendation_ID == 1 && data.AveRatings < 76)
+        if(data.Recommendation_ID == 1 && data.AveRatings < parseInt(PG))
         {
             $.post(WebURL + '/app-fail',{ProgramApp_ID:data.ProgramApp_ID})
             tbl_app_prog.ajax.reload( null, false );
@@ -261,7 +263,7 @@ $(document).ready(function ()
             $('#auto_enroll_div').hide();
         }
 
-        if(recomID == 6 && insertDate != "" && ave >= 76)
+        if(recomID == 6 && insertDate != "" && ave >= parseInt(PG))
         {
             $('#btn_update_recom').show();
             $('#btn_save_recom').hide();
@@ -301,7 +303,7 @@ $(document).ready(function ()
         $('#recom_remarks').val(remarks);
         $('#insertDate').val(insertDate);
         $('#recom_recom').val(recomID);
-        if (ave>=76)
+        if (ave>=parseInt(PG))
         {
 
             $("#recom_recom option[value='1']").show();
@@ -664,7 +666,7 @@ $(document).ready(function ()
 
             if(RateCount > 0)
             {
-                if(ratings>=76)
+                if(ratings>=parseInt(PG))
                 {
                     $('#status_fail').prop('disabled',true);
                 }
@@ -724,9 +726,9 @@ $(document).ready(function ()
             if ($(this).is(':checked')) {
                 $('#status_passed').prop('checked',false);
 
-                if($('#ratings_app').val() >= PG)
+                if($('#ratings_app').val() >= parseInt(PG))
                 {
-                    $('#ratings_app').val(PG-1);
+                    $('#ratings_app').val(parseInt(PG)-1);
                 }
             }
         });
@@ -735,7 +737,7 @@ $(document).ready(function ()
             function(){
                 if ($(this).is(':checked')) {
                     $('#status_fail').prop('checked',false);
-                    if($('#ratings_app').val() < PG)
+                    if($('#ratings_app').val() < parseInt(PG))
                     {
                         $('#ratings_app').val(PG);
                     }
@@ -793,12 +795,13 @@ $(document).ready(function ()
                                                 if(data[0]['TrainCount'] == 0)
                                                 {
                                                     $.post(WebURL + '/check-ratings',{Applicant_ID:Applicant_ID,Program_ID:Program_ID},function(data){
-                                                        if(data >= PG)
+                                                        if(data >= parseInt(PG))
                                                         {
                                                             $.post(WebURL + '/insert-program-app', {Program_ID:Program_ID,Applicant_ID:Applicant_ID,recom_recom:6,recom_remarks:'Enrolled to the next program'},function(data)
                                                             {
                                                                 if(data.num>0)
                                                                 {
+                                                                    var ProgramApp_ID = data.num;
                                                                     $.post(WebURL + '/train-app',{Program_ID:Sequence_Program_ID,Applicant_ID:Applicant_ID},function(data){
                                                                         if(data.num>0)
                                                                         {
@@ -817,6 +820,7 @@ $(document).ready(function ()
                                                                         }
                                                                         else
                                                                         {
+                                                                            $.post(WebURL + '/fail-auto',{ProgramApp_ID:ProgramApp_ID})
                                                                             swal.fire({
                                                                                 title: "Warning!",
                                                                                 text: data.msg,
@@ -835,9 +839,7 @@ $(document).ready(function ()
                                                             $('#modal_app_rating').modal('hide');
                                                             tbl_train_app.ajax.reload( null, false );
                                                             swal.close();
-
                                                         }
-
                                                     })
                                                 }
                                                 else
@@ -884,7 +886,11 @@ $(document).ready(function ()
     //Auto Pass&Fail based on AVE
     $('body').on('change','#ratings_app',function(){
 
-        if($('#ratings_app').val()>=76)
+        console.log($('#ratings_app').val());
+        console.log(PG);
+        console.log(parseInt($('#ratings_app').val())>=parseInt(PG))
+
+        if(parseInt($('#ratings_app').val())>=parseInt(PG))
         {
             $('#status_passed').prop('checked',true);
             $('#status_fail').prop('checked',false);

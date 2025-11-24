@@ -3,6 +3,7 @@
 <script src="{{asset('assets/js/app.min.js')}}"></script>
 <script type="text/javascript">
     var WebURL = {!! json_encode(url('/')) !!}
+    var CURRENT_DATE = "{{date('Y-m-d')}}";
 </script>
 
 

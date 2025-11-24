@@ -73,6 +73,7 @@ Route::GET('/trainings-program-app/{id}','TrainingController@getProgramApp');
 Route::POST('/program-app-tbl','TrainingController@tblProgrammApp');
 Route::GET('/trainings-edit-app/{id}','TrainingController@showEditTrainingApp');
 Route::POST('/recom-count','TrainingController@recomCount');
+Route::GET('/cview-app','TrainingController@calendarViewApp');
 // Route::POST('/auto-enroll','TrainingController@getAvailablePrograms');
 Route::POST('/insert-program-app','TrainingController@insertProgramApp');
 Route::POST('/update-program-app','TrainingController@updateProgramApp');
@@ -84,6 +85,7 @@ Route::POST('/check-rate','TrainingController@checkRatingsCount');
 Route::POST('/check-train','TrainingController@checkTrainingDone');
 Route::POST('/check-eligable','TrainingController@checkEligableAuto');
 Route::POST('/check-ratings','TrainingController@checkRatingApp');
+Route::POST('/fail-auto','TrainingController@failAuto');
 
 //Options
 Route::GET('/get-dc','OptionsController@getDC');

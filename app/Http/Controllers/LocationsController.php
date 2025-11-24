@@ -21,7 +21,6 @@ class LocationsController extends Controller
       {
           abort(403);
       }
-    //   dd($Locations);
     }
 
     public function insertLocations(Request $request)
@@ -68,7 +67,6 @@ class LocationsController extends Controller
             MyHelper::decrypt(Session::get('Employee_ID'))
         );
 
-        // dd($data);
          Location::updateLocation($data);
          $num = 1;
          $msg = 'Location successfuly updated!';

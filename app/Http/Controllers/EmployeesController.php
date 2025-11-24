@@ -28,10 +28,18 @@ class EmployeesController extends Controller
     public function getEmployeeDetails($id)
     {
 
-        $employee = DB::select('sp_Employee_get ?',[$id]);
-        $data['title']='Employee Details';
-        return view ('pages.employees.tabs.employee_det',$data)
-        ->with('employee',$employee);
+        if(Myhelper::checkSession())
+        {
+            $employee = DB::select('sp_Employee_get ?',[$id]);
+            $data['title']='Employee Details';
+            return view ('pages.employees.tabs.employee_det',$data)
+            ->with('employee',$employee);
+        }
+        else
+        {
+            return redirect()->away(env('MYHUB_URL'));
+        }
+
 
     }
 

@@ -33,10 +33,18 @@ class TraineesController extends Controller
     }
     public function getTraineesID($id)
     {
-        $applicant = Trainees::getTraineesID($id);
-        $data['title']='Applicant Details' ;
-        return view ('pages.trainees.tabs.trainees_det',$data)
-        ->with('applicant',$applicant);
+
+        if(Myhelper::checkSession())
+        {
+            $applicant = Trainees::getTraineesID($id);
+            $data['title']='Applicant Details' ;
+            return view ('pages.trainees.tabs.trainees_det',$data)
+            ->with('applicant',$applicant);
+        }
+        else
+        {
+            return redirect()->away(env('MYHUB_URL'));
+        }
 
     }
     public function dataTableAppDet(Request $request)

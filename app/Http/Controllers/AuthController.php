@@ -24,15 +24,14 @@ class AuthController extends Controller
         catch (Throwable $e)
         {
             // dd($e);
-            abort(500);
+            return redirect()->away(env('MYHUB_URL'));
 
         }
 
 
         $userDetails = UserDetails::getUserDetails($userEmpID);
 
-        // dd($userDetails);
-        // DD($userDetails);
+
         if(count($userDetails) > 0)
         {
             $data['moduleRoleID'] = 0;
@@ -73,6 +72,7 @@ class AuthController extends Controller
     public function logout()
     {
         Artisan::call('cache:clear');
+        Session::flush();
         return  Redirect::to(env('MYHUB_LOGOUT_URL'));
     }
 }

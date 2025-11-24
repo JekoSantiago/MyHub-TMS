@@ -74,27 +74,6 @@
                     </a>
                 </li>
                 @endif
-
-                <li>
-                    <a href="#sidebarProjects" data-toggle="collapse" aria-expanded="false" >
-                        <i class="mdi mdi-briefcase-check-outline"></i>
-                        <span class="menu-collapsed"> Projects </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse sidebar-submenu" id="sidebarProjects" style="">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="project-list.html" class="menu-collapsed">List</a>
-                            </li>
-                            <li>
-                                <a href="project-detail.html" class="menu-collapsed">Detail</a>
-                            </li>
-                            <li>
-                                <a href="project-create.html" class="menu-collapsed">Create Project</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
             </ul>
         </div>
         <div class="clearfix"></div>
